@@ -94,7 +94,26 @@ class BackgroundWorker: NSObject
 }
 
 
-
+//MARK: - BACKGROUND REALM
+/**
+ A `BackgroundRealm` essentially:
+ 
+ 1. creates a private `Thread` and `RunLoop` where a new background `Realm` will be opened
+ 2. opens a `Realm` in the private thread
+ 3. executes the `completion` closure in the background thread
+ 
+ Upon successfully opening the `Realm` in the background, the `completion` closure is executed, which gives clients a chance to:
+ 
+ - make computationally expensive changes to the `Realm`, or
+ - register for change notifications in the background
+ 
+ This is particularly useful if you'd like to be notified of changes to a `Realm` but not necessarily want to trigger a UI update right away.
+ 
+ - warning: Although a `BackgroundRealm` can be created from any thread, it does **not** make its underlying `Realm` nor its objects thread-safe. They should still be accessed only from within their appropriate thread. In other words, **it is not safe** to use the underlying `Realm` in your apps UI.
+ 
+ ## See Also:
+ - `BackgroundRealm.init(configuration:_:)`
+ */
 public final class BackgroundRealm
 {
     //MARK: - Properties
@@ -121,18 +140,7 @@ public final class BackgroundRealm
     
     //MARK: - Initializers
     /**
-     Obtains a `BackgroundRealm` instance with the given configuration. Essentially, this:
-     
-     1. creates a private `Thread` and `RunLoop` where a new background `Realm` will be opened
-     2. opens a `Realm` in the private thread
-     3. executes the `completion` closure in the background thread
-     
-     Upon successfully opening the `Realm` in the background, the `completion` closure is executed, which gives clients a chance to:
-     
-     - make computationally expensive changes to the `Realm`, or
-     - register for change notifications in the background
-     
-     This is particularly useful if you'd like to be notified of changes to a `Realm` but not necessarily want to trigger a UI update right away. 
+     Obtains a `BackgroundRealm` instance with the given configuration.
      
      - parameters:
         - configuration:    a configuration value to use when creating the `Realm`.
@@ -141,8 +149,6 @@ public final class BackgroundRealm
                             It receives two arguments:
             - `Realm`:                  the background `Realm` instance if it was possible to open one.
             - `BackgroundRealm.Error`:  a `BackgroundRealm.Error` describing what went wrong.
-     
-     - warning: Although a `BackgroundRealm` can be created from any thread, it does **not** make its underlying `Realm` nor its objects thread-safe. They should still be accessed only from within their appropriate thread. In other words, **it is not safe** to use the underlying `Realm` in your apps UI.
      */
     @nonobjc
     public init(configuration: Realm.Configuration? = Realm.Configuration.backgroundConfiguration,
