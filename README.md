@@ -104,11 +104,15 @@ let backgroundRealm = BackgroundRealm(fileURL: <#T##URL#>) { (realm, error) in
 pod 'BackgroundRealm', '~> 1.0'
 ```
 
+Then `import BackgroundRealm` where needed.
+
 ### Carthage
 
 ```swift
 github "BellAppLab/BackgroundRealm" ~> 1.0
 ```
+
+Then `import BackgroundRealm` where needed.
 
 ### Git Submodules
 
