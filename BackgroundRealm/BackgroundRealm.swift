@@ -146,7 +146,7 @@ public final class BackgroundRealm
      */
     @nonobjc
     public init(configuration: Realm.Configuration? = Realm.Configuration.backgroundConfiguration,
-                _ completion: ((Realm?, BackgroundRealm.Error?) -> Void)? = nil)
+                _ completion: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
     {
         self._configuration = configuration ?? Realm.Configuration.defaultConfiguration
         setup(completion)
@@ -169,7 +169,7 @@ public final class BackgroundRealm
      */
     @nonobjc
     public convenience init(fileURL: URL,
-                            _ completion: ((Realm?, BackgroundRealm.Error?) -> Void)? = nil)
+                            _ completion: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
     {
         var configuration = Realm.Configuration.backgroundConfiguration ?? Realm.Configuration.defaultConfiguration
         configuration.fileURL = fileURL
@@ -177,7 +177,7 @@ public final class BackgroundRealm
     }
     
     @nonobjc
-    private func setup(_ completion: ((Realm?, BackgroundRealm.Error?) -> Void)? = nil)
+    private func setup(_ completion: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
     {
         let configuration = _configuration
         
@@ -187,22 +187,22 @@ public final class BackgroundRealm
             Realm.asyncOpen(configuration: configuration,
                             callbackQueue: Realm.queue)
             { (realm, error) in
-                completion?(realm, .generic(underlyingError: error))
+                completion(realm, .generic(underlyingError: error))
             }
             return
         }
         
         backgroundWorker.start { [weak self] in
             guard let strongSelf = self else {
-                completion?(nil, .generic(underlyingError: nil))
+                completion(nil, .generic(underlyingError: nil))
                 return
             }
             
             do {
                 strongSelf.underlyingRealm = try Realm(configuration: configuration)
-                completion?(strongSelf.underlyingRealm, nil)
+                completion(strongSelf.underlyingRealm, nil)
             } catch {
-                completion?(nil, .generic(underlyingError: error))
+                completion(nil, .generic(underlyingError: error))
             }
         }
     }

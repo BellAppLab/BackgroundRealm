@@ -11,6 +11,8 @@ Background Realm is a collection of handy classes and extensions that make it ea
 It's main focus is to enhance existing `Realm`s and Realm-based code bases with very little overhead and refactoring.
 
 **Note**: Although this module makes it more convenient to work with a `Realm` in the background, it does **not** make  `Realm`s nor its objects thread-safe. They should still be accessed only from within their appropriate thread.
+
+For the Objective-C counterpart, see [BLBackgroundRealm](https://github.com/BellAppLab/BLBackgroundRealm).
                    DESC
 
   s.homepage            = "https://github.com/BellAppLab/BackgroundRealm"
