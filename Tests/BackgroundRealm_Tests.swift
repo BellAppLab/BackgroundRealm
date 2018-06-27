@@ -20,6 +20,7 @@ class BackgroundRealm_Tests: XCTestCase
         customBackgroundRealm = nil
         fileBackgroundRealm = nil
         updateBackgroundRealm = nil
+        backgroundWriteToken = nil
     }
     
     func testInitialisingBackgroundRealmWithTheDefaultConfiguration() {
