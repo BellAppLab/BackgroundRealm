@@ -1,5 +1,6 @@
 use_frameworks!
 inhibit_all_warnings!
+use_modular_headers!
 
 # version = '3.0.0'
 version = '~> 3.0'
