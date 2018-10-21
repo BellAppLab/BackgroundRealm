@@ -68,19 +68,30 @@ class BackgroundWorker: NSObject
                         object: nil)
         thread?.name = "\(threadName)-\(UUID().uuidString)"
         thread?.start()
+
+        #if swift(>=4.2)
+        let mode = RunLoop.Mode.default.rawValue
+        #else
+        let mode = RunLoopMode.defaultRunLoopMode.rawValue
+        #endif
         
         perform(#selector(runBlock),
                 on: thread!,
                 with: nil,
                 waitUntilDone: false,
-                modes: [RunLoopMode.defaultRunLoopMode.rawValue])
+                modes: [mode])
     }
     
     @objc
     func runRunLoop() {
+        #if swift(>=4.2)
+        let mode = RunLoop.Mode.default
+        #else
+        let mode = RunLoopMode.defaultRunLoopMode
+        #endif
         while (self.isRunning) {
             RunLoop.current.run(
-                mode: RunLoopMode.defaultRunLoopMode,
+                mode: mode,
                 before: Date.distantFuture)
         }
         Thread.exit()

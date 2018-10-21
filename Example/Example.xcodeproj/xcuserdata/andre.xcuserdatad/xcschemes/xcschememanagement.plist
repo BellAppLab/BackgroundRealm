@@ -7,22 +7,22 @@
 		<key>BackgroundRealm_iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>0</integer>
 		</dict>
 		<key>BackgroundRealm_macOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>3</integer>
 		</dict>
 		<key>BackgroundRealm_tvOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>2</integer>
 		</dict>
 		<key>BackgroundRealm_watchOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>1</integer>
 		</dict>
 		<key>Example.xcscheme</key>
 		<dict>
@@ -34,54 +34,24 @@
 			<key>isShown</key>
 			<true/>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>22</integer>
 		</dict>
 		<key>macOS Example.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>24</integer>
 		</dict>
 		<key>tvOS Example.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<true/>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>23</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>65982B0520DFF9C70018F790</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>65982B1B20DFFC830018F790</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>65982B4220DFFD3E0018F790</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>65982B5520DFFD5A0018F790</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>65DB01BC20E0000400F514EC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>65DB01CA20E0005500F514EC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>65DB01D820E0009200F514EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
