@@ -34,6 +34,7 @@ For the Objective-C counterpart, see [BLBackgroundRealm](https://github.com/Bell
   s.source_files        = "BackgroundRealm"
 
   s.framework           = "Foundation"
+  s.dependency          'Realm', '~> 3.0'
   s.dependency          'RealmSwift', '~> 3.0'
 
 end

@@ -1,9 +1,10 @@
 use_frameworks!
 inhibit_all_warnings!
-use_modular_headers!
 
 # version = '3.0.0'
 version = '~> 3.0'
+
+pod 'Realm', version, :modular_headers => true
 
 target 'iOS Example' do
   platform :ios, '9.0'
