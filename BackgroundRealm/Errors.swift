@@ -56,7 +56,7 @@ extension BackgroundRealm
         
         //MARK: - String Convertible
         public var description: String {
-            return "\(self): \(localizedDescription)"
+            return "BackgroundRealm.Error: \(localizedDescription)"
         }
     }
 }
