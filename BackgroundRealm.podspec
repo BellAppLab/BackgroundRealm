@@ -37,18 +37,4 @@ For the Objective-C counterpart, see [BLBackgroundRealm](https://github.com/Bell
   s.dependency          'Realm', '~> 3.0'
   s.dependency          'RealmSwift', '~> 3.0'
 
-  s.subspec 'Core' do |sp|
-    sp.swift_version	= '4.2'
-  end
-
-  s.subspec 'Swift-4.1' do |sp|
-    sp.swift_version	= '4.1'
-  end
-
-  s.subspec 'Swift-4.0' do |sp|
-    sp.swift_version	= '4.0'
-  end
-
-  s.default_subspec     = 'Core'
-
 end

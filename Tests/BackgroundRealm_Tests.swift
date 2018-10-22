@@ -11,23 +11,14 @@ class BackgroundRealm_Tests: XCTestCase
     var fileBackgroundRealm: BackgroundRealm?
     var updateBackgroundRealm: BackgroundRealm?
     
-    override func setUp() {
-        super.setUp()
-        
-        Realm.Configuration.backgroundConfiguration = nil
-        defaultBackgroundRealm = nil
-        backgroundBackgroundRealm = nil
-        customBackgroundRealm = nil
-        fileBackgroundRealm = nil
-        updateBackgroundRealm = nil
-        backgroundWriteToken = nil
-    }
-    
     func testInitialisingBackgroundRealmWithTheDefaultConfiguration() {
         let expectRealm = expectation(description: "We should be able to create a BackgroundRealm from Realm.Configuration.default")
         
-        defaultBackgroundRealm = BackgroundRealm { (realm, error) in
-            defer { expectRealm.fulfill() }
+        defaultBackgroundRealm = BackgroundRealm { [weak self] (realm, error) in
+            defer {
+                self?.defaultBackgroundRealm = nil
+                expectRealm.fulfill()
+            }
             
             XCTAssertNil(error, "We should be able to get a background Realm with no errors, but got one: \(error!)")
             XCTAssertNotNil(realm, "We should be able to get a background Realm with no errors")
@@ -48,8 +39,11 @@ class BackgroundRealm_Tests: XCTestCase
         
         Realm.Configuration.backgroundConfiguration = Realm.Configuration(fileURL: url!)
         
-        backgroundBackgroundRealm = BackgroundRealm { (realm, error) in
-            defer { expectRealm.fulfill() }
+        backgroundBackgroundRealm = BackgroundRealm { [weak self] (realm, error) in
+            defer {
+                self?.backgroundBackgroundRealm = nil
+                expectRealm.fulfill()
+            }
             
             XCTAssertNil(error, "We should be able to get a background Realm with no errors, but got one: \(error!)")
             XCTAssertNotNil(realm, "We should be able to get a background Realm with no errors")
@@ -70,12 +64,16 @@ class BackgroundRealm_Tests: XCTestCase
         let url = Realm.Configuration.defaultConfiguration.fileURL?.deletingLastPathComponent().appendingPathComponent("testInitialisingBackgroundRealmWithCustomConfiguration.realm")
         XCTAssertNotNil(url, "The test realm URL shouldn't be nil")
         print("URL: \(url!)")
-        
-        Realm.Configuration.backgroundConfiguration = Realm.Configuration(fileURL: Realm.Configuration.defaultConfiguration.fileURL!)
+
+        let backgroundConfiguration = Realm.Configuration(fileURL: Realm.Configuration.defaultConfiguration.fileURL!)
+        Realm.Configuration.backgroundConfiguration = backgroundConfiguration
         
         let configuration = Realm.Configuration(fileURL: url!)
-        customBackgroundRealm = BackgroundRealm(configuration: configuration) { (realm, error) in
-            defer { expectRealm.fulfill() }
+        customBackgroundRealm = BackgroundRealm(configuration: configuration) { [weak self] (realm, error) in
+            defer {
+                self?.customBackgroundRealm = nil
+                expectRealm.fulfill()
+            }
             
             XCTAssertNil(error, "We should be able to get a background Realm with no errors, but got one: \(error!)")
             XCTAssertNotNil(realm, "We should be able to get a background Realm with no errors")
@@ -84,7 +82,7 @@ class BackgroundRealm_Tests: XCTestCase
             
             XCTAssertNotNil(realm!.configuration.fileURL, "The background realm's configuration shouldn't be empty")
             XCTAssertEqual(realm!.configuration.fileURL!, configuration.fileURL!, "The background realm's URL should be equal to the one set upon initialisation")
-            XCTAssertNotEqual(realm!.configuration.fileURL!, Realm.Configuration.backgroundConfiguration!.fileURL!, "The background realm's URL should be equal to the one set upon initialisation")
+            XCTAssertNotEqual(realm!.configuration.fileURL!, backgroundConfiguration.fileURL!, "The background realm's URL should be equal to the one set upon initialisation")
         }
         
         wait(for: [expectRealm],
@@ -98,8 +96,11 @@ class BackgroundRealm_Tests: XCTestCase
         XCTAssertNotNil(url, "The test realm URL shouldn't be nil")
         print("URL: \(url!)")
         
-        fileBackgroundRealm = BackgroundRealm(fileURL: url!) { (realm, error) in
-            defer { expectRealm.fulfill() }
+        fileBackgroundRealm = BackgroundRealm(fileURL: url!) { [weak self] (realm, error) in
+            defer {
+                self?.fileBackgroundRealm = nil
+                expectRealm.fulfill()
+            }
             
             XCTAssertNil(error, "We should be able to get a background Realm with no errors, but got one: \(error!)")
             XCTAssertNotNil(realm, "We should be able to get a background Realm with no errors")
@@ -144,6 +145,8 @@ class BackgroundRealm_Tests: XCTestCase
                 switch change {
                 case .error(let error):
                     XCTFail("\(error)")
+                    self?.updateBackgroundRealm = nil
+                    self?.backgroundWriteToken = nil
                     expectWrite.fulfill()
                 case .initial(_):
                     print("INITIAL")
@@ -151,6 +154,8 @@ class BackgroundRealm_Tests: XCTestCase
                     XCTAssertFalse(insertions.isEmpty, "We should have inserted a TestObject")
                     XCTAssertEqual(collection[insertions.first!].name, name, "We should have inserted a TestObject with the name '\(name)'")
                     XCTAssertNotEqual(Thread.current, Thread.main, "We should be in the background")
+                    self?.updateBackgroundRealm = nil
+                    self?.backgroundWriteToken = nil
                     expectWrite.fulfill()
                 }
             })
