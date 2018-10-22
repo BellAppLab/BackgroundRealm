@@ -21,7 +21,7 @@ It's main focus is to enhance existing `Realm`s and Realm-based code bases with 
 * tvOS 10+
 * watchOS 3+
 * macOS 10.10+
-* Swift 3.3+
+* Swift 4.0+
 
 ### Objective-C
 
@@ -126,6 +126,10 @@ Then drag the `BackgroundRealm` folder into your Xcode project.
 ## Author
 
 Bell App Lab, apps@bellapplab.com
+
+### Contributing
+
+Check [this out](./CONTRIBUTING.md).
 
 ### Credits
 
