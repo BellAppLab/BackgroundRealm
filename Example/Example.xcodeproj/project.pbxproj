@@ -54,12 +54,12 @@
 		65DB022A20E0021700F514EC /* BackgroundRealm_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DB022820E0021700F514EC /* BackgroundRealm_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65DB022D20E0021700F514EC /* BackgroundRealm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB022620E0021700F514EC /* BackgroundRealm.framework */; };
 		65DB022E20E0021700F514EC /* BackgroundRealm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB022620E0021700F514EC /* BackgroundRealm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		65DB023320E0023E00F514EC /* Realm+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB01B720DFFFB700F514EC /* Realm+Background.swift */; };
-		65DB023520E0024000F514EC /* Realm+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB01B720DFFFB700F514EC /* Realm+Background.swift */; };
-		65DB023620E0024100F514EC /* Realm+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB01B720DFFFB700F514EC /* Realm+Background.swift */; };
-		65DB023920E0072C00F514EC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023720E0072800F514EC /* Errors.swift */; };
-		65DB023B20E0072D00F514EC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023720E0072800F514EC /* Errors.swift */; };
-		65DB023C20E0072E00F514EC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023720E0072800F514EC /* Errors.swift */; };
+		65DB023320E0023E00F514EC /* Realm+BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB01B720DFFFB700F514EC /* Realm+BackgroundRealm.swift */; };
+		65DB023520E0024000F514EC /* Realm+BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB01B720DFFFB700F514EC /* Realm+BackgroundRealm.swift */; };
+		65DB023620E0024100F514EC /* Realm+BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB01B720DFFFB700F514EC /* Realm+BackgroundRealm.swift */; };
+		65DB023920E0072C00F514EC /* BackgroundRealm+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023720E0072800F514EC /* BackgroundRealm+Errors.swift */; };
+		65DB023B20E0072D00F514EC /* BackgroundRealm+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023720E0072800F514EC /* BackgroundRealm+Errors.swift */; };
+		65DB023C20E0072E00F514EC /* BackgroundRealm+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023720E0072800F514EC /* BackgroundRealm+Errors.swift */; };
 		65DB023E20E00DFD00F514EC /* BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023D20E00DF400F514EC /* BackgroundRealm.swift */; };
 		65DB024020E00DFF00F514EC /* BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023D20E00DF400F514EC /* BackgroundRealm.swift */; };
 		65DB024120E00DFF00F514EC /* BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023D20E00DF400F514EC /* BackgroundRealm.swift */; };
@@ -74,8 +74,8 @@
 		65DB025120E0332B00F514EC /* BackgroundRealm_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB024E20E0332B00F514EC /* BackgroundRealm_Tests.swift */; };
 		65DB026B20E0462B00F514EC /* BackgroundRealm_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DB026920E0462B00F514EC /* BackgroundRealm_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65DB026F20E0465300F514EC /* BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023D20E00DF400F514EC /* BackgroundRealm.swift */; };
-		65DB027020E0465300F514EC /* Realm+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB01B720DFFFB700F514EC /* Realm+Background.swift */; };
-		65DB027120E0465300F514EC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023720E0072800F514EC /* Errors.swift */; };
+		65DB027020E0465300F514EC /* Realm+BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB01B720DFFFB700F514EC /* Realm+BackgroundRealm.swift */; };
+		65DB027120E0465300F514EC /* BackgroundRealm+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB023720E0072800F514EC /* BackgroundRealm+Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,7 +235,7 @@
 		65982B5F20DFFD5B0018F790 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65982B6020DFFD5B0018F790 /* macOS_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS_Example.entitlements; sourceTree = "<group>"; };
 		65DB01B520DFFF4E00F514EC /* BackgroundRealm.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = BackgroundRealm.podspec; path = ../BackgroundRealm.podspec; sourceTree = "<group>"; };
-		65DB01B720DFFFB700F514EC /* Realm+Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Background.swift"; sourceTree = "<group>"; };
+		65DB01B720DFFFB700F514EC /* Realm+BackgroundRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+BackgroundRealm.swift"; sourceTree = "<group>"; };
 		65DB01BD20E0000400F514EC /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DB01C120E0000400F514EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65DB01CB20E0005500F514EC /* tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,7 +251,7 @@
 		65DB022620E0021700F514EC /* BackgroundRealm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BackgroundRealm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DB022820E0021700F514EC /* BackgroundRealm_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundRealm_macOS.h; sourceTree = "<group>"; };
 		65DB022920E0021700F514EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65DB023720E0072800F514EC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		65DB023720E0072800F514EC /* BackgroundRealm+Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BackgroundRealm+Errors.swift"; sourceTree = "<group>"; };
 		65DB023D20E00DF400F514EC /* BackgroundRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRealm.swift; sourceTree = "<group>"; };
 		65DB024620E01F1700F514EC /* Realm+Background_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Background_Tests.swift"; sourceTree = "<group>"; };
 		65DB024A20E01FFF00F514EC /* TestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
@@ -692,8 +692,8 @@
 			isa = PBXGroup;
 			children = (
 				65DB023D20E00DF400F514EC /* BackgroundRealm.swift */,
-				65DB01B720DFFFB700F514EC /* Realm+Background.swift */,
-				65DB023720E0072800F514EC /* Errors.swift */,
+				65DB01B720DFFFB700F514EC /* Realm+BackgroundRealm.swift */,
+				65DB023720E0072800F514EC /* BackgroundRealm+Errors.swift */,
 			);
 			name = BackgroundRealm;
 			path = ../BackgroundRealm;
@@ -1206,8 +1206,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DB023E20E00DFD00F514EC /* BackgroundRealm.swift in Sources */,
-				65DB023920E0072C00F514EC /* Errors.swift in Sources */,
-				65DB023320E0023E00F514EC /* Realm+Background.swift in Sources */,
+				65DB023920E0072C00F514EC /* BackgroundRealm+Errors.swift in Sources */,
+				65DB023320E0023E00F514EC /* Realm+BackgroundRealm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1216,8 +1216,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DB024020E00DFF00F514EC /* BackgroundRealm.swift in Sources */,
-				65DB023B20E0072D00F514EC /* Errors.swift in Sources */,
-				65DB023520E0024000F514EC /* Realm+Background.swift in Sources */,
+				65DB023B20E0072D00F514EC /* BackgroundRealm+Errors.swift in Sources */,
+				65DB023520E0024000F514EC /* Realm+BackgroundRealm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1226,8 +1226,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DB024120E00DFF00F514EC /* BackgroundRealm.swift in Sources */,
-				65DB023C20E0072E00F514EC /* Errors.swift in Sources */,
-				65DB023620E0024100F514EC /* Realm+Background.swift in Sources */,
+				65DB023C20E0072E00F514EC /* BackgroundRealm+Errors.swift in Sources */,
+				65DB023620E0024100F514EC /* Realm+BackgroundRealm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1236,8 +1236,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DB026F20E0465300F514EC /* BackgroundRealm.swift in Sources */,
-				65DB027120E0465300F514EC /* Errors.swift in Sources */,
-				65DB027020E0465300F514EC /* Realm+Background.swift in Sources */,
+				65DB027120E0465300F514EC /* BackgroundRealm+Errors.swift in Sources */,
+				65DB027020E0465300F514EC /* Realm+BackgroundRealm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

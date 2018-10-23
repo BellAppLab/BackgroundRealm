@@ -1,4 +1,4 @@
-# Background Realm [![Version](https://img.shields.io/badge/Version-1.0.3-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
+# Background Realm [![Version](https://img.shields.io/badge/Version-1.0.4-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
 
 [![Platforms](https://img.shields.io/badge/Platforms-iOS|tvOS|macOS|watchOS-brightgreen.svg?style=flat)](#installation)
 [![Swift support](https://img.shields.io/badge/Swift-3.3%20%7C%204.1-red.svg?style=flat)](#swift-versions-support)
