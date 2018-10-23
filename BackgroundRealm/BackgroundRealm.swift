@@ -210,10 +210,7 @@ public final class BackgroundRealm
         }
         
         backgroundWorker.start { [weak self] in
-            guard let strongSelf = self else {
-                completion(nil, .generic(underlyingError: nil))
-                return
-            }
+            guard let strongSelf = self else { return }
             
             do {
                 strongSelf.underlyingRealm = try Realm(configuration: configuration)
