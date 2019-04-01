@@ -22,7 +22,7 @@ For the Objective-C counterpart, see [BLBackgroundRealm](https://github.com/Bell
   s.author              = { "Bell App Lab" => "apps@bellapplab.com" }
   s.social_media_url    = "https://twitter.com/BellAppLab"
 
-  s.swift_versions      = ['4.0', '5.0']
+  s.swift_version       = '4.0', '5.0'
 
   s.ios.deployment_target = "9.0"
   s.osx.deployment_target = "10.10"
