@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name                = "BackgroundRealm"
-  s.version             = "1.0.5"
+  s.version             = "1.1.0"
   s.summary             = "A collection of handy classes and extensions that make it easier to work with `RealmSwift` in the background."
   s.screenshot          = "https://github.com/BellAppLab/BackgroundRealm/raw/master/Images/background_realm.png"
 
@@ -21,6 +21,8 @@ For the Objective-C counterpart, see [BLBackgroundRealm](https://github.com/Bell
 
   s.author              = { "Bell App Lab" => "apps@bellapplab.com" }
   s.social_media_url    = "https://twitter.com/BellAppLab"
+
+  s.swift_versions      = ['4.0', '5.0']
 
   s.ios.deployment_target = "9.0"
   s.osx.deployment_target = "10.10"
