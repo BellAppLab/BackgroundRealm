@@ -1,4 +1,4 @@
-# Background Realm [![Version](https://img.shields.io/badge/Version-1.1.0-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
+# Background Realm [![Version](https://img.shields.io/badge/Version-1.2.0-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
 
 [![Platforms](https://img.shields.io/badge/Platforms-iOS|tvOS|macOS|watchOS-brightgreen.svg?style=flat)](#installation)
 [![Swift support](https://img.shields.io/badge/Swift-4.0%20%7C%204.1%20%7C%204.2-red.svg?style=flat)](#swift-versions-support)
@@ -21,7 +21,7 @@ It's main focus is to enhance existing `Realm`s and Realm-based code bases with 
 * tvOS 10+
 * watchOS 3+
 * macOS 10.10+
-* Swift 4.0+
+* Swift 4.2+
 
 ### Objective-C
 
@@ -101,7 +101,7 @@ let backgroundRealm = BackgroundRealm(fileURL: <#T##URL#>) { (realm, error) in
 ### Cocoapods
 
 ```ruby
-pod 'BackgroundRealm', '~> 1.1'
+pod 'BackgroundRealm', '~> 1.2'
 ```
 
 Then `import BackgroundRealm` where needed.
@@ -109,7 +109,7 @@ Then `import BackgroundRealm` where needed.
 ### Carthage
 
 ```swift
-github "BellAppLab/BackgroundRealm" ~> 1.1
+github "BellAppLab/BackgroundRealm" ~> 1.2
 ```
 
 Then `import BackgroundRealm` where needed.
