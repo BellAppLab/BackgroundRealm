@@ -123,7 +123,7 @@ public extension Realm
                                                       _ closure: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
     {
         //Adding an `Operation` is added to `Realm.operationQueue`
-        Realm.operationQueue.addOperation {
+        OperationQueue.backgroundRealm.addOperation {
             do {
                 //Creating an autorelease pool
                 try autoreleasepool {
@@ -169,19 +169,24 @@ public extension Realm
 
 //MARK: - QUEUES
 @nonobjc
-public extension Realm
+public extension DispatchQueue
 {
-    /// The dispatch queue used to commit background write operations to Realm
-    static let queue: DispatchQueue = {
+    /// The dispatch queue used to commit background write operations to Realm.
+    static var backgroundRealm: DispatchQueue = {
         let result = DispatchQueue(label: "BackgroundRealm.Queue", qos: DispatchQoS.utility)
         return result
     }()
-    
-    /// The opertation queue used to commit background write operations to Realm
-    static let operationQueue: OperationQueue = {
+}
+
+
+@nonobjc
+public extension OperationQueue
+{
+    /// The opertation queue used to commit background write operations to Realm.
+    static var backgroundRealm: OperationQueue = {
         let result = OperationQueue()
         result.name = "BackgroundRealm.OperationQueue"
-        result.underlyingQueue = Realm.queue
+        result.underlyingQueue = .backgroundRealm
         result.maxConcurrentOperationCount = 1
         return result
     }()
