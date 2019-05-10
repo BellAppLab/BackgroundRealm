@@ -1,4 +1,4 @@
-# Background Realm [![Version](https://img.shields.io/badge/Version-1.3.0-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
+# Background Realm [![Version](https://img.shields.io/badge/Version-1.3.1-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
 
 [![Platforms](https://img.shields.io/badge/Platforms-iOS|tvOS|macOS|watchOS-brightgreen.svg?style=flat)](#installation)
 [![Swift support](https://img.shields.io/badge/Swift-4.0%20%7C%204.1%20%7C%204.2-red.svg?style=flat)](#swift-versions-support)
@@ -95,6 +95,15 @@ let backgroundRealm = BackgroundRealm(fileURL: <#T##URL#>) { (realm, error) in
     <#code#>
 }
 ```
+
+## Queues
+
+`BackgroundRealm` uses two queues to process things in the background: 
+
+- `DispatchQueue.backgroundRealm`
+- `OperationQueue.backgroundRealm`
+
+If you'd like to use your own queues, just set those as early as possible in you app's life cycle.
 
 ## Installation
 

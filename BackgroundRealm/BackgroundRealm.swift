@@ -202,7 +202,7 @@ public final class BackgroundRealm
         // synchronised, read-only Realms must be opened using `asyncOpen`
         if configuration.syncConfiguration != nil, configuration.readOnly == true {
             Realm.asyncOpen(configuration: configuration,
-                            callbackQueue: Realm.queue)
+                            callbackQueue: .backgroundRealm)
             { (realm, error) in
                 completion(realm, .generic(underlyingError: error))
             }
