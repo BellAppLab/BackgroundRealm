@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,7 @@
 		65982B5920DFFD5A0018F790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65982B5820DFFD5A0018F790 /* AppDelegate.swift */; };
 		65982B5B20DFFD5B0018F790 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65982B5A20DFFD5B0018F790 /* Assets.xcassets */; };
 		65982B5E20DFFD5B0018F790 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65982B5C20DFFD5B0018F790 /* MainMenu.xib */; };
+		65984C03235B281700E09FB0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65984C02235B281700E09FB0 /* RealmSwift.framework */; platformFilter = ios; };
 		65DB01F420E0018A00F514EC /* BackgroundRealm_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DB01F220E0018A00F514EC /* BackgroundRealm_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65DB01F720E0018A00F514EC /* BackgroundRealm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB01F020E0018A00F514EC /* BackgroundRealm.framework */; };
 		65DB01F820E0018A00F514EC /* BackgroundRealm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB01F020E0018A00F514EC /* BackgroundRealm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -244,6 +245,7 @@
 		65982B5D20DFFD5B0018F790 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		65982B5F20DFFD5B0018F790 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65982B6020DFFD5B0018F790 /* macOS_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS_Example.entitlements; sourceTree = "<group>"; };
+		65984C02235B281700E09FB0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../../Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		65DB01B520DFFF4E00F514EC /* BackgroundRealm.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = BackgroundRealm.podspec; path = ../BackgroundRealm.podspec; sourceTree = "<group>"; };
 		65DB01B720DFFFB700F514EC /* Realm+BackgroundRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+BackgroundRealm.swift"; sourceTree = "<group>"; };
 		65DB01BD20E0000400F514EC /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +329,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65984C03235B281700E09FB0 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +751,7 @@
 				65DB022720E0021700F514EC /* BackgroundRealm_macOS */,
 				65DB01B820DFFFE900F514EC /* Tests */,
 				65982AEE20DBD5670018F790 /* Products */,
+				65984C01235B281700E09FB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -803,6 +807,14 @@
 				65982B6020DFFD5B0018F790 /* macOS_Example.entitlements */,
 			);
 			path = "macOS Example";
+			sourceTree = "<group>";
+		};
+		65984C01235B281700E09FB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65984C02235B281700E09FB0 /* RealmSwift.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		65DB01B620DFFFA500F514EC /* BackgroundRealm */ = {
@@ -1491,7 +1503,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PLATFORM = "";
 				PRODUCT_NAME = BackgroundRealm;
-				REALM_PATH = "$(SRCROOT)/../Realm/realm-swift-$(REALM_VERSION)/$(PLATFORM)/swift-10.2.1";
+				REALM_PATH = "$(SRCROOT)/../Carthage/build/iOS";
 				REALM_VERSION = 3.15.0;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1555,7 +1567,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PLATFORM = "";
 				PRODUCT_NAME = BackgroundRealm;
-				REALM_PATH = "$(SRCROOT)/../Realm/realm-swift-$(REALM_VERSION)/$(PLATFORM)/swift-10.2.1";
+				REALM_PATH = "$(SRCROOT)/../Carthage/build/iOS";
 				REALM_VERSION = 3.15.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
