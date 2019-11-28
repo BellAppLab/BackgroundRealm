@@ -1,7 +1,7 @@
-# Background Realm [![Version](https://img.shields.io/badge/Version-1.3.1-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
+# Background Realm [![Version](https://img.shields.io/badge/Version-2.0.0-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
 
 [![Platforms](https://img.shields.io/badge/Platforms-iOS|tvOS|macOS|watchOS-brightgreen.svg?style=flat)](#installation)
-[![Swift support](https://img.shields.io/badge/Swift-4.0%20%7C%204.1%20%7C%204.2-red.svg?style=flat)](#swift-versions-support)
+[![Swift support](https://img.shields.io/badge/Swift-4.2%20%7C%205.1-red.svg?style=flat)](#swift-versions-support)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/BackgroundRealm.svg?style=flat&label=CocoaPods)](https://cocoapods.org/pods/BackgroundRealm)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Twitter](https://img.shields.io/badge/Twitter-@BellAppLab-blue.svg?style=flat)](http://twitter.com/BellAppLab)
@@ -16,7 +16,7 @@ It's main focus is to enhance existing `Realm`s and Realm-based code bases with 
 
 ## Specs
 
-* RealmSwift 3.0.0+
+* RealmSwift 4.0.0+
 * iOS 9+
 * tvOS 10+
 * watchOS 3+
@@ -29,7 +29,7 @@ For the Objective-C counterpart, see [BLBackgroundRealm](https://github.com/Bell
 
 ## Writing to a Realm in the background
 
-Commiting write transactions in the background becomes as easy as:
+Performing write transactions in the background becomes as easy as:
 
 ```swift
 Realm.writeInBackground(configuration: <#T##Realm.Configuration?#>) { (realm, error) in
@@ -54,6 +54,28 @@ let realm = try Realm()
 
 realm.writeInBackground { (backgroundRealm, error) in 
     <#code#>
+}
+```
+
+## Commiting to a Realm in the background
+
+Similarly to write operations, you can commit transactinos to a `Realm` in the background. The difference being that commits can be cancelled:
+
+```swift
+Realm.commitInBackground(configuration: <#T##Realm.Configuration?#>) { (realm, error) -> Bool in
+    <#code#>
+    return false //return true if you want to cancel this write operation
+}
+```
+
+You can also move from any `Realm` instance to its background counterpart:
+
+```swift
+let realm = try Realm()
+
+realm.commitInBackground { (backgroundRealm, error) -> Bool in 
+    <#code#>
+    return false //return true if you want to cancel this write operation
 }
 ```
 
@@ -110,7 +132,7 @@ If you'd like to use your own queues, just set those as early as possible in you
 ### Cocoapods
 
 ```ruby
-pod 'BackgroundRealm', '~> 1.3'
+pod 'BackgroundRealm', '~> 2.0'
 ```
 
 Then `import BackgroundRealm` where needed.
@@ -118,7 +140,7 @@ Then `import BackgroundRealm` where needed.
 ### Carthage
 
 ```swift
-github "BellAppLab/BackgroundRealm" ~> 1.3
+github "BellAppLab/BackgroundRealm" ~> 2.0
 ```
 
 Then `import BackgroundRealm` where needed.

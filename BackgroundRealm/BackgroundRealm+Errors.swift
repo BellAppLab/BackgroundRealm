@@ -32,6 +32,7 @@ extension BackgroundRealm
     public enum Error: Swift.Error, CustomStringConvertible
     {
         /// This error occurs when no `Realm.Configuration.backgroundConfiguration` has been set and no configuration has been passed to `Realm.writeInBackground`.
+        @available(*, unavailable, message: "This error is no longer necessary")
         case noBackgroundConfiguration
         
         /// During a write operation in the background, `BackgroundRealm` will try to refresh its `realm` before changing it. This error describes the situation where it wasn't possible to perform that refresh for some reason.
