@@ -3,7 +3,7 @@ import RealmSwift
 @testable import BackgroundRealm
 
 
-class Realm_Background_Tests: XCTestCase
+class Realm_Background_Write_Tests: XCTestCase
 {
     override func setUp() {
         super.setUp()
@@ -11,24 +11,6 @@ class Realm_Background_Tests: XCTestCase
         Realm.Configuration.backgroundConfiguration = nil
         staticBackgroundWriteToken = nil
         instanceBackgroundWriteToken = nil
-    }
-    
-    func testStaticWriteInBackgroundWithNoConfiguration() {
-        let expectError = expectation(description: "We should get a BackgroundRealm.Error.noBackgroundConfiguration from calling `Realm.writeInBackground` with no configuration set")
-        
-        Realm.writeInBackground { (_, error) in
-            defer { expectError.fulfill() }
-            
-            switch error {
-            case .some(let value):
-                XCTAssert(value == .noBackgroundConfiguration, "Since we haven't set a background configuration, we should get a BackgroundRealm.Error.noBackgroundConfiguration back from writeInBackground")
-            default:
-                XCTFail("We haven't got the right error here")
-            }
-        }
-        
-        wait(for: [expectError],
-             timeout: 3)
     }
     
     func testInstanceWriteInBackgroundWithNoConfiguration() {
@@ -239,3 +221,224 @@ class Realm_Background_Tests: XCTestCase
              timeout: 5)
     }
 }
+
+
+class Realm_Background_Commit_Tests: XCTestCase
+{
+    override func setUp() {
+        super.setUp()
+
+        Realm.Configuration.backgroundConfiguration = nil
+        staticBackgroundCommitToken = nil
+        instanceBackgroundCommitToken = nil
+    }
+
+    func testInstanceCommitInBackgroundWithNoConfiguration() {
+        let expectRealm = expectation(description: "We should get a Realm instance back from calling `realm.commitInBackground` with the default configuration")
+
+        do {
+            let realm = try Realm()
+            realm.commitInBackground { (realm, error) in
+                defer { expectRealm.fulfill() }
+
+                XCTAssertNil(error, "We should be able to get a background Realm with no errors, but got one: \(error!)")
+                XCTAssertNotNil(realm, "We should be able to get a background Realm with no errors")
+            }
+        } catch {
+            XCTFail("\(error)")
+            expectRealm.fulfill()
+        }
+
+        wait(for: [expectRealm],
+             timeout: 3)
+    }
+
+    func testStaticCommitInBackgroundWithFileURL() {
+        let expectRealm = expectation(description: "We should get a Realm instance back from calling `Realm.commitInBackground` with a background file URL set")
+
+        let url = Realm.Configuration.defaultConfiguration.fileURL?.deletingLastPathComponent().appendingPathComponent("testStaticCommitInBackgroundWithFileURL.realm")
+        XCTAssertNotNil(url, "The test realm URL shouldn't be nil")
+        print("URL: \(url!)")
+
+        Realm.commitInBackground(fileURL: url!) { (realm, error) in
+            defer { expectRealm.fulfill() }
+
+            XCTAssertNil(error, "We should be able to get a background Realm with no errors, but got one: \(error!)")
+            XCTAssertNotNil(realm, "We should be able to get a background Realm with no errors")
+            XCTAssertNotNil(realm?.configuration.fileURL, "The background realm's configuration shouldn't be empty")
+            XCTAssertEqual(realm?.configuration.fileURL, url, "The background realm's URL should be equal to \(url!)")
+        }
+
+        wait(for: [expectRealm],
+             timeout: 3)
+    }
+
+    func testInstanceCommitInBackgroundWithFileURL() {
+        let expectRealm = expectation(description: "We should get a Realm instance back from calling `realm.commitInBackground` with a background file URL set")
+
+        let url = Realm.Configuration.defaultConfiguration.fileURL?.deletingLastPathComponent().appendingPathComponent("testInstanceCommitInBackgroundWithFileURL.realm")
+        XCTAssertNotNil(url, "The test realm URL shouldn't be nil")
+        print("URL: \(url!)")
+
+        do {
+            let realm = try Realm(fileURL: url!)
+            realm.commitInBackground { (realm, error) in
+                defer { expectRealm.fulfill() }
+
+                XCTAssertNil(error, "We should be able to get a background Realm with no errors, but got one: \(error!)")
+                XCTAssertNotNil(realm, "We should be able to get a background Realm with no errors")
+                XCTAssertNotNil(realm?.configuration.fileURL, "The background realm's configuration shouldn't be empty")
+                XCTAssertEqual(realm?.configuration.fileURL, url!, "The background realm's URL should be equal to \(url!)")
+            }
+        } catch {
+            XCTFail("\(error)")
+            expectRealm.fulfill()
+        }
+
+        wait(for: [expectRealm],
+             timeout: 3)
+    }
+
+    func testStaticCommitInBackgroundWithConfiguration() {
+        let expectRealm = expectation(description: "We should get a Realm instance back from calling `Realm.commitInBackground` with a background configuration set")
+
+        let url = Realm.Configuration.defaultConfiguration.fileURL?.deletingLastPathComponent().appendingPathComponent("testStaticCommitInBackgroundWithConfiguration.realm")
+        XCTAssertNotNil(url, "The test realm URL shouldn't be nil")
+        print("URL: \(url!)")
+
+        Realm.Configuration.backgroundConfiguration = Realm.Configuration(fileURL: url!)
+        Realm.commitInBackground { (realm, error) in
+            defer { expectRealm.fulfill() }
+
+            XCTAssertNil(error, "We should be able to get a background Realm with no errors, but got one: \(error!)")
+            XCTAssertNotNil(realm, "We should be able to get a background Realm with no errors")
+            XCTAssertNotNil(realm!.configuration.fileURL, "The background realm's configuration shouldn't be empty")
+            XCTAssertEqual(realm!.configuration.fileURL!, Realm.Configuration.backgroundConfiguration!.fileURL!, "The background realm's URL should be equal to the one set on Realm.Configuration.backgroundConfiguration")
+        }
+
+        wait(for: [expectRealm],
+             timeout: 3)
+    }
+
+    func testInstanceCommitInBackgroundWithConfiguration() {
+        let expectRealm = expectation(description: "We should get a Realm instance back from calling `realm.commitInBackground` with a background configuration set")
+
+        let url = Realm.Configuration.defaultConfiguration.fileURL?.deletingLastPathComponent().appendingPathComponent("testInstanceCommitInBackgroundWithConfiguration.realm")
+        XCTAssertNotNil(url, "The test realm URL shouldn't be nil")
+        print("URL: \(url!)")
+
+        Realm.Configuration.backgroundConfiguration = Realm.Configuration(fileURL: url!)
+        do {
+            let realm = try Realm(fileURL: url!)
+            realm.commitInBackground { (realm, error) in
+                defer { expectRealm.fulfill() }
+
+                XCTAssertNil(error, "We should be able to get a background Realm with no errors, but got one: \(error!)")
+                XCTAssertNotNil(realm, "We should be able to get a background Realm with no errors")
+                XCTAssertNotNil(realm!.configuration.fileURL, "The background realm's configuration shouldn't be empty")
+                XCTAssertEqual(realm!.configuration.fileURL!, Realm.Configuration.backgroundConfiguration!.fileURL!, "The background realm's URL should be equal to \(url!)")
+            }
+        } catch {
+            XCTFail("\(error)")
+            expectRealm.fulfill()
+        }
+
+        wait(for: [expectRealm],
+             timeout: 3)
+    }
+
+    var staticBackgroundCommitToken: NotificationToken?
+
+    func testReceivingChangesFromStaticBackgroundCommit() {
+        let expectWrite = expectation(description: "We should get a notification from a write transaction initated by a call to `Realm.commitInBackground`")
+
+        let url = Realm.Configuration.defaultConfiguration.fileURL?.deletingLastPathComponent().appendingPathComponent("testReceivingChangesFromStaticBackgroundCommit.realm")
+        XCTAssertNotNil(url, "The test realm URL shouldn't be nil")
+        print("URL: \(url!)")
+
+        Realm.Configuration.backgroundConfiguration = Realm.Configuration(fileURL: url!)
+
+        let name = "TEST TEST"
+
+        do {
+            let realm = try Realm(configuration: Realm.Configuration.backgroundConfiguration!)
+            realm.beginWrite()
+            realm.deleteAll()
+            try realm.commitWrite()
+
+            staticBackgroundCommitToken = realm.objects(TestObject.self).observe({ (change) in
+                switch change {
+                case .error(let error):
+                    XCTFail("\(error)")
+                    expectWrite.fulfill()
+                case .initial(_):
+                    print("INITIAL")
+                case .update(let collection, _, let insertions, _):
+                    XCTAssertFalse(insertions.isEmpty, "We should have inserted a TestObject")
+                    XCTAssertEqual(collection[insertions.first!].name, name, "We should have inserted a TestObject with the name '\(name)'")
+                    expectWrite.fulfill()
+                }
+            })
+        } catch {
+            XCTFail("\(error)")
+            expectWrite.fulfill()
+        }
+
+        Realm.commitInBackground { (realm, _) in
+            let object = TestObject()
+            object.name = name
+            realm?.add(object)
+        }
+
+        wait(for: [expectWrite],
+             timeout: 5)
+    }
+
+    var instanceBackgroundCommitToken: NotificationToken?
+
+    func testReceivingChangesFromInstanceBackgroundCommit() {
+        let expectWrite = expectation(description: "We should get a notification from a write transaction initated by a call to `realm.commitInBackground`")
+
+        let url = Realm.Configuration.defaultConfiguration.fileURL?.deletingLastPathComponent().appendingPathComponent("testReceivingChangesFromInstanceBackgroundCommit.realm")
+        XCTAssertNotNil(url, "The test realm URL shouldn't be nil")
+        print("URL: \(url!)")
+
+        Realm.Configuration.backgroundConfiguration = Realm.Configuration(fileURL: url!)
+
+        let name = "TEST TEST"
+
+        do {
+            let realm = try Realm(configuration: Realm.Configuration.backgroundConfiguration!)
+            realm.beginWrite()
+            realm.deleteAll()
+            try realm.commitWrite()
+
+            instanceBackgroundCommitToken = realm.objects(TestObject.self).observe({ (change) in
+                switch change {
+                case .error(let error):
+                    XCTFail("\(error)")
+                    expectWrite.fulfill()
+                case .initial(_):
+                    print("INITIAL")
+                case .update(let collection, _, let insertions, _):
+                    XCTAssertFalse(insertions.isEmpty, "We should have inserted a TestObject")
+                    XCTAssertEqual(collection[insertions.first!].name, name, "We should have inserted a TestObject with the name '\(name)'")
+                    expectWrite.fulfill()
+                }
+            })
+
+            realm.commitInBackground { (realm, _) in
+                let object = TestObject()
+                object.name = name
+                realm?.add(object)
+            }
+        } catch {
+            XCTFail("\(error)")
+            expectWrite.fulfill()
+        }
+
+        wait(for: [expectWrite],
+             timeout: 5)
+    }
+}
+

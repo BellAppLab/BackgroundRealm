@@ -40,23 +40,31 @@ public extension Realm.Configuration
 }
 
 
-//MARK: - TRANSACTIONS
-@nonobjc
+//MARK: - WRITE TRANSACTIONS
+/**
+ A BackgroundTransaction is a closure that is executed in the background with a newly instantiated `Realm`.
+
+ - parameters:
+     - `Realm`:                 the background `Realm` instance if it was possible to open one.
+     - `BackgroundRealm.Error`: a `BackgroundRealm.Error` describing what went wrong.
+ */
+public typealias BackgroundTransaction = (Realm?, BackgroundRealm.Error?) -> Void
+
+
 public extension Realm
 {
     /**
-     Upon calling this function, an `Operation` is added to `Realm.operationQueue` which essentially:
+     Upon calling this function, an `Operation` is added to `OperationQueue.backgroundRealm` which essentially:
      
      1. creates an autorelease pool
-     2. tries to find a `Realm.Configuration` to open a new `Realm` with
-     3. opens a new `Realm` in the background
-     4. calls `try realm.write {}` on the background `Realm`
+     2. opens a new `Realm` in the background
+     3. calls `try realm.write {}` on the background `Realm`
+     4. executes the `BackgroundTransaction` closure on the background `Realm`
      
      - parameters:
          - configuration:   an instance of `Realm.Configuration` used to open a new `Realm` in the background.
-                            If no `Configuration` is provided, it defaults to `Realm.Configuration.backgroundConfiguration`.
-                            If no `backgroundConfiguration` is set, a `BackgroundRealm.Error.noBackgroundConfiguration` is returned.
-                            Defaults to `nil`.
+                            Defaults to `Realm.Configuration.backgroundConfiguration`.
+                            If no `backgroundConfiguration` is set, a `Realm.Configuration.defaultConfiguration` is used.
          - closure:         the closure to be executed inside the background `try realm.write {}` call.
                             It receives two arguments:
             - `Realm`:                  the background `Realm` instance if it was possible to open one.
@@ -64,13 +72,13 @@ public extension Realm
      
      ## See Also:
      - [Note on autorelease pools](https://realm.io/docs/swift/latest/#threading)
-     - `BackgroundRealm.Error.noBackgroundConfiguration`
-     - `Realm.operationQueue`
+     - `OperationQueue.backgroundRealm`
      */
-    static func writeInBackground(configuration: Realm.Configuration? = nil,
-                                  _ closure: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
+    static func writeInBackground(configuration: Realm.Configuration? = .backgroundConfiguration,
+                                  _ closure: @escaping BackgroundTransaction)
     {
-        Realm.commitTransactionInBackground(configuration: configuration, closure)
+        Realm.executeInBackground(configuration: configuration ?? .defaultConfiguration,
+                                  closure)
     }
     
     /**
@@ -89,19 +97,20 @@ public extension Realm
      - `Realm.writeInBackground(configuration:_:)`
      */
     static func writeInBackground(fileURL: URL,
-                                  _ closure: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
+                                  _ closure: @escaping BackgroundTransaction)
     {
         var configuration = Realm.Configuration.backgroundConfiguration ?? Realm.Configuration.defaultConfiguration
         configuration.fileURL = fileURL
-        
-        Realm.commitTransactionInBackground(configuration: configuration, closure)
+
+        Realm.executeInBackground(configuration: configuration,
+                                  closure)
     }
     
     /**
      Similar to `Realm.writeInBackground(configuration:_:)`, but using an existing `Realm`'s configuration to commit a write transaction in the background.
      
      If the existing `Realm`'s configuration is `nil`, this method defaults to `Realm.Configuration.backgroundConfiguration`.
-     If no `backgroundConfiguration` is set, a `BackgroundRealm.Error.noBackgroundConfiguration` is returned.
+     If no `backgroundConfiguration` is set, `Realm.Configuration.defaultConfiguration` is used.
      
      - parameters:
         - closure:      the closure to be executed inside the background `try realm.write {}` call.
@@ -112,47 +121,40 @@ public extension Realm
      ## See Also:
      - `Realm.writeInBackground(configuration:_:)`
      */
-    func writeInBackground(_ closure: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
+    func writeInBackground(_ closure: @escaping BackgroundTransaction)
     {
-        let configuration = self.configuration
-        Realm.commitTransactionInBackground(configuration: configuration, closure)
+        let config = configuration
+        Realm.executeInBackground(configuration: config,
+                                  closure)
     }
+
     
-    //MARK: - Private
-    private static func commitTransactionInBackground(configuration: Realm.Configuration?,
-                                                      _ closure: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
+    //MARK: Private
+    private static func executeInBackground(configuration: Realm.Configuration,
+                                            _ closure: @escaping BackgroundTransaction)
     {
-        //Adding an `Operation` is added to `Realm.operationQueue`
+        //Adding an `Operation` to `OperationQueue.backgroundRealm`
         OperationQueue.backgroundRealm.addOperation {
             do {
                 //Creating an autorelease pool
                 try autoreleasepool {
-                    //Finding the right configuration
-                    var config: Realm.Configuration
-                    switch (configuration, Realm.Configuration.backgroundConfiguration) {
-                    case (let value?, _),
-                         (_, let value?):
-                        config = value
-                    case (nil, _),
-                         (_, nil):
-                        closure(nil, .noBackgroundConfiguration)
-                        return
-                    }
-                    
-                    //Making the background realm writable
+                    var config = configuration
+
+                    //Making the background realm read only if needed
                     config.readOnly = false
-                    
+
                     let realm = try Realm(configuration: config)
+
                     //Disallowing autorefresh for performance reasons
                     realm.autorefresh = false
-                    
+
                     //Refreshing the background realm before writing, so to get a more up-to-date state
                     guard realm.refresh() else {
                         closure(nil, .refresh)
                         return
                     }
-                    
-                    //Writing to the realm
+
+                    //Write to the realm
                     try realm.write {
                         closure(realm, nil)
                     }
@@ -161,6 +163,146 @@ public extension Realm
                 closure(nil, error)
             } catch {
                 closure(nil, .generic(underlyingError: error))
+            }
+        }
+    }
+}
+
+
+//MARK: - COMMIT TRANSACTIONS
+/**
+ A CancellableBackgroundTransaction is a closure that is executed in the background with a newly instantiated `Realm`.
+
+ - parameters:
+     - `Realm`:                 the background `Realm` instance if it was possible to open one.
+     - `BackgroundRealm.Error`: a `BackgroundRealm.Error` describing what went wrong.
+
+ - returns:
+    - Should cancel:            a boolean value indicating whether the closure should cancel its commit transaction.
+                                If `true` is returned, `realm.cancelCommit()` is called instead of commiting changes to the `Realm`.
+ */
+public typealias CancellableBackgroundTransaction = (Realm?, BackgroundRealm.Error?) -> Bool
+
+
+public extension Realm
+{
+    /**
+     Upon calling this function, an `Operation` is added to `OperationQueue.backgroundRealm` which essentially:
+
+     1. creates an autorelease pool
+     2. opens a new `Realm` in the background
+     3. calls `beginWrite()` on the background `Realm`
+     4. executes the `CancellableBackgroundTransaction` closure on the background `Realm`
+     5. calls `try realm.commitWrite()` on the background `Realm`
+
+     - note:
+        If `true` is returned from the transation closure, `cancelWrite()` is called on the background `Realm`.
+
+     - parameters:
+         - configuration:   an instance of `Realm.Configuration` used to open a new `Realm` in the background.
+                            Defaults to `Realm.Configuration.backgroundConfiguration`.
+                            If no `backgroundConfiguration` is set, a `Realm.Configuration.defaultConfiguration` is used.
+         - closure:         the closure to be executed inside the background write transaction.
+                            It receives two arguments:
+            - `Realm`:                  the background `Realm` instance if it was possible to open one.
+            - `BackgroundRealm.Error`:  a `BackgroundRealm.Error` describing what went wrong.
+
+     ## See Also:
+     - [Note on autorelease pools](https://realm.io/docs/swift/latest/#threading)
+     - `OperationQueue.backgroundRealm`
+     */
+    static func commitInBackground(configuration: Realm.Configuration? = .backgroundConfiguration,
+                                   _ closure: @escaping BackgroundTransaction)
+    {
+        Realm.executeInBackground(configuration: configuration ?? .defaultConfiguration,
+                                  closure)
+    }
+
+    /**
+     Similar to `Realm.commitInBackground(configuration:_:)`, but using a `URL` instead of a `Configuration` to commit a write transaction in the background.
+
+     - parameters:
+        - fileURL:  the file URL used to open a new `Realm` in the background.
+                    It defaults to using `Realm.Configuration.backgroundConfiguration` and setting its `fileURL` property.
+                    If no `backgroundConfiguration` is set, `Realm.Configuration.defaultConfiguration` is used.
+        - closure:  the closure to be executed inside the background `try realm.write {}` call.
+                    It receives two arguments:
+            - `Realm`:                  the background `Realm` instance if it was possible to open one.
+            - `BackgroundRealm.Error`:  a `BackgroundRealm.Error` describing what went wrong.
+
+     ## See Also:
+     - `Realm.writeInBackground(configuration:_:)`
+     */
+    static func commitInBackground(fileURL: URL,
+                                   _ closure: @escaping BackgroundTransaction)
+    {
+        var configuration = Realm.Configuration.backgroundConfiguration ?? Realm.Configuration.defaultConfiguration
+        configuration.fileURL = fileURL
+
+        Realm.executeInBackground(configuration: configuration,
+                                  closure)
+    }
+
+    /**
+     Similar to `Realm.commitInBackground(configuration:_:)`, but using an existing `Realm`'s configuration to commit a write transaction in the background.
+
+     If the existing `Realm`'s configuration is `nil`, this method defaults to `Realm.Configuration.backgroundConfiguration`.
+     If no `backgroundConfiguration` is set, `Realm.Configuration.defaultConfiguration` is used.
+
+     - parameters:
+        - closure:      the closure to be executed inside the background `try realm.write {}` call.
+                        It receives two arguments:
+            - `Realm`:                  the background `Realm` instance if it was possible to open one.
+            - `BackgroundRealm.Error`:  a `BackgroundRealm.Error` describing what went wrong.
+
+     ## See Also:
+     - `Realm.writeInBackground(configuration:_:)`
+     */
+    func commitInBackground( closure: @escaping BackgroundTransaction)
+    {
+        let config = configuration
+        Realm.executeInBackground(configuration: config,
+                                  closure)
+    }
+
+
+    //MARK: Private
+    private static func executeInBackground(configuration: Realm.Configuration,
+                                            _ closure: @escaping CancellableBackgroundTransaction)
+    {
+        //Adding an `Operation` to `OperationQueue.backgroundRealm`
+        OperationQueue.backgroundRealm.addOperation {
+            do {
+                //Creating an autorelease pool
+                try autoreleasepool {
+                    var config = configuration
+
+                    //Making the background realm read only if needed
+                    config.readOnly = false
+
+                    let realm = try Realm(configuration: config)
+
+                    //Disallowing autorefresh for performance reasons
+                    realm.autorefresh = false
+
+                    //Refreshing the background realm before writing, so to get a more up-to-date state
+                    guard realm.refresh() else {
+                        let _ = closure(nil, .refresh)
+                        return
+                    }
+
+                    //Begin write transaction
+                    realm.beginWrite()
+                    guard closure(realm, nil) == false else {
+                        realm.cancelWrite()
+                        return
+                    }
+                    try realm.commitWrite()
+                }
+            } catch let error as BackgroundRealm.Error {
+                let _ = closure(nil, error)
+            } catch {
+                let _ = closure(nil, .generic(underlyingError: error))
             }
         }
     }

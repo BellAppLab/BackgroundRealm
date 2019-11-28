@@ -5,7 +5,7 @@
 1. Fork and clone the repo
 2. Download Realm into some folder in your machine (it's large and we don't want it in the repo)
     - [Earliest supported version](https://static.realm.io/downloads/swift/realm-swift-3.0.0.zip) - v3.0.0
-    - [Latest supported version](https://static.realm.io/downloads/swift/realm-swift-3.11.1.zip) - v3.11.1
+    - [Latest supported version](https://static.realm.io/downloads/swift/realm-swift-4.1.1.zip) - v3.11.1
 3. Navigate to your clone's folder and create a symbolic link to the Realm libraries
     - `ln -s <path/to/realm> ./Realm`
 
