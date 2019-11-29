@@ -120,6 +120,8 @@ class BackgroundRealm_Tests: XCTestCase
     
     func testReceivingBackgroundChangesFromBackgroundWrite() {
         let expectWrite = expectation(description: "We should get a background notification from a write transaction initated by a call to `realm.writeInBackground`")
+        let dontExpectError = expectation(description: "We should not get an error on the write callback")
+        dontExpectError.isInverted = true
         
         let url = Realm.Configuration.defaultConfiguration.fileURL?.deletingLastPathComponent().appendingPathComponent("testReceivingBackgroundChangesFromBackgroundWrite.realm")
         XCTAssertNotNil(url, "The test realm URL shouldn't be nil")
@@ -162,14 +164,19 @@ class BackgroundRealm_Tests: XCTestCase
             
             XCTAssertNotNil(self?.backgroundWriteToken, "The observation token shouldn't be nil here")
             
-            realm?.writeInBackground { (bgRealm, _) in
-                let object = TestObject()
-                object.name = name
-                bgRealm?.add(object)
+            realm?.writeInBackground { (result) in
+                switch result {
+                case .success(let bgRealm):
+                    let object = TestObject()
+                    object.name = name
+                    bgRealm.add(object)
+                case .failure(_):
+                    dontExpectError.fulfill()
+                }
             }
         }
         
-        wait(for: [expectWrite],
+        wait(for: [expectWrite, dontExpectError],
              timeout: 5)
     }
 }

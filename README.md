@@ -32,7 +32,7 @@ For the Objective-C counterpart, see [BLBackgroundRealm](https://github.com/Bell
 Performing write transactions in the background becomes as easy as:
 
 ```swift
-Realm.writeInBackground(configuration: <#T##Realm.Configuration?#>) { (realm, error) in
+Realm.writeInBackground(configuration: <#T##Realm.Configuration?#>) { (result) in
     <#code#>
 }
 ```
@@ -42,7 +42,7 @@ Optionally, you can set a default `backgroundConfiguration` that will be used in
 ```swift
 Realm.Configuration.backgroundConfiguration = <#T##Realm.Configuration?#>
 
-Realm.writeInBackground { (realm, error) in
+Realm.writeInBackground { (result) in
     <#code#>
 }
 ```
@@ -52,7 +52,7 @@ Finally, you can easily move from any `Realm` instance to its background counter
 ```swift
 let realm = try Realm()
 
-realm.writeInBackground { (backgroundRealm, error) in 
+realm.writeInBackground { (result) in 
     <#code#>
 }
 ```
@@ -62,7 +62,7 @@ realm.writeInBackground { (backgroundRealm, error) in
 Similarly to write operations, you can commit transactinos to a `Realm` in the background. The difference being that commits can be cancelled:
 
 ```swift
-Realm.commitInBackground(configuration: <#T##Realm.Configuration?#>) { (realm, error) -> Bool in
+Realm.commitInBackground(configuration: <#T##Realm.Configuration?#>) { (result) -> Bool in
     <#code#>
     return false //return true if you want to cancel this write operation
 }
@@ -73,7 +73,7 @@ You can also move from any `Realm` instance to its background counterpart:
 ```swift
 let realm = try Realm()
 
-realm.commitInBackground { (backgroundRealm, error) -> Bool in 
+realm.commitInBackground { (result) -> Bool in 
     <#code#>
     return false //return true if you want to cancel this write operation
 }
@@ -97,7 +97,7 @@ This is particularly useful if you'd like to:
 - Creating a `BackgroundRealm` using `Realm.Configuration.backgroundConfiguration`:
 
 ```swift
-let backgroundRealm = BackgroundRealm { (realm, error) in
+let backgroundRealm = BackgroundRealm { (result) in
     <#code#>
 }
 ```
@@ -105,7 +105,7 @@ let backgroundRealm = BackgroundRealm { (realm, error) in
 - Creating a `BackgroundRealm` using a custom configuration:
 
 ```swift
-let backgroundRealm = BackgroundRealm(configuration: <#T##Realm.Configuration?#>) { (realm, error) in
+let backgroundRealm = BackgroundRealm(configuration: <#T##Realm.Configuration?#>) { (result) in
     <#code#>
 }
 ```
@@ -113,7 +113,7 @@ let backgroundRealm = BackgroundRealm(configuration: <#T##Realm.Configuration?#>
 - Creating a `BackgroundRealm` using a file `URL`:
 
 ```swift
-let backgroundRealm = BackgroundRealm(fileURL: <#T##URL#>) { (realm, error) in
+let backgroundRealm = BackgroundRealm(fileURL: <#T##URL#>) { (result) in
     <#code#>
 }
 ```

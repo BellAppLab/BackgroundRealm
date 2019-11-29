@@ -48,7 +48,7 @@ public extension Realm.Configuration
      - `Realm`:                 the background `Realm` instance if it was possible to open one.
      - `BackgroundRealm.Error`: a `BackgroundRealm.Error` describing what went wrong.
  */
-public typealias BackgroundTransaction = (Realm?, BackgroundRealm.Error?) -> Void
+public typealias BackgroundTransaction = (Result<Realm, BackgroundRealm.Error>) -> Void
 
 
 public extension Realm
@@ -150,19 +150,19 @@ public extension Realm
 
                     //Refreshing the background realm before writing, so to get a more up-to-date state
                     guard realm.refresh() else {
-                        closure(nil, .refresh)
+                        closure(.failure(.refresh))
                         return
                     }
 
                     //Write to the realm
                     try realm.write {
-                        closure(realm, nil)
+                        closure(.success(realm))
                     }
                 }
             } catch let error as BackgroundRealm.Error {
-                closure(nil, error)
+                closure(.failure(error))
             } catch {
-                closure(nil, .generic(underlyingError: error))
+                closure(.failure(.generic(underlyingError: error)))
             }
         }
     }
@@ -181,7 +181,7 @@ public extension Realm
     - Should cancel:            a boolean value indicating whether the closure should cancel its commit transaction.
                                 If `true` is returned, `realm.cancelCommit()` is called instead of commiting changes to the `Realm`.
  */
-public typealias CancellableBackgroundTransaction = (Realm?, BackgroundRealm.Error?) -> Bool
+public typealias CancellableBackgroundTransaction = (Result<Realm, BackgroundRealm.Error>) -> Bool
 
 
 public extension Realm
@@ -287,22 +287,22 @@ public extension Realm
 
                     //Refreshing the background realm before writing, so to get a more up-to-date state
                     guard realm.refresh() else {
-                        let _ = closure(nil, .refresh)
+                        let _ = closure(.failure(.refresh))
                         return
                     }
 
                     //Begin write transaction
                     realm.beginWrite()
-                    guard closure(realm, nil) == false else {
+                    guard closure(.success(realm)) == false else {
                         realm.cancelWrite()
                         return
                     }
                     try realm.commitWrite()
                 }
             } catch let error as BackgroundRealm.Error {
-                let _ = closure(nil, error)
+                let _ = closure(.failure(error))
             } catch {
-                let _ = closure(nil, .generic(underlyingError: error))
+                let _ = closure(.failure(.generic(underlyingError: error)))
             }
         }
     }

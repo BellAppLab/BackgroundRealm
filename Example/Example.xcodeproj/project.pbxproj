@@ -107,13 +107,6 @@
 			remoteGlobalIDString = 65DB022520E0021700F514EC;
 			remoteInfo = BackgroundRealm_macOS;
 		};
-		65F044DD238EB9E60047CC90 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65F042FE238EB9E40047CC90 /* RealmPlugin.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2263AAB619B0A1E6007240D9;
-			remoteInfo = RealmPlugin;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -223,22 +216,6 @@
 		65F042FA238EB9E40047CC90 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		65F042FB238EB9E40047CC90 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		65F042FC238EB9E40047CC90 /* docs.webloc */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = docs.webloc; sourceTree = "<group>"; };
-		65F042FE238EB9E40047CC90 /* RealmPlugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = RealmPlugin.xcodeproj; sourceTree = "<group>"; };
-		65F04301238EB9E40047CC90 /* rlm_lldb.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = rlm_lldb.py; sourceTree = "<group>"; };
-		65F04303238EB9E40047CC90 /* RLMPSimulatorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RLMPSimulatorManager.m; sourceTree = "<group>"; };
-		65F04304238EB9E40047CC90 /* RealmPlugin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RealmPlugin-Prefix.pch"; sourceTree = "<group>"; };
-		65F04306238EB9E40047CC90 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		65F04307238EB9E40047CC90 /* RLMPRealmPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RLMPRealmPlugin.h; sourceTree = "<group>"; };
-		65F04308238EB9E40047CC90 /* RealmPlugin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RealmPlugin-Info.plist"; sourceTree = "<group>"; };
-		65F04309238EB9E40047CC90 /* RLMPSimulatorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RLMPSimulatorManager.h; sourceTree = "<group>"; };
-		65F0430A238EB9E40047CC90 /* RLMPRealmPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RLMPRealmPlugin.m; sourceTree = "<group>"; };
-		65F0430B238EB9E40047CC90 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		65F0430F238EB9E40047CC90 /* TemplateIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TemplateIcon.icns; sourceTree = "<group>"; };
-		65F04311238EB9E40047CC90 /* ___FILEBASENAME___.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "___FILEBASENAME___.swift"; sourceTree = "<group>"; };
-		65F04312238EB9E40047CC90 /* TemplateInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TemplateInfo.plist; sourceTree = "<group>"; };
-		65F04314238EB9E40047CC90 /* ___FILEBASENAME___.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "___FILEBASENAME___.h"; sourceTree = "<group>"; };
-		65F04315238EB9E40047CC90 /* ___FILEBASENAME___.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___FILEBASENAME___.m"; sourceTree = "<group>"; };
-		65F04316238EB9E40047CC90 /* install_templates.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install_templates.sh; sourceTree = "<group>"; };
 		65F04319238EB9E40047CC90 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		65F0431A238EB9E40047CC90 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		65F0431D238EB9E40047CC90 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -505,7 +482,6 @@
 				65F042F4238EB9E40047CC90 /* watchos */,
 				65F042F8238EB9E40047CC90 /* osx */,
 				65F042FC238EB9E40047CC90 /* docs.webloc */,
-				65F042FD238EB9E40047CC90 /* plugin */,
 				65F04317238EB9E40047CC90 /* ios */,
 				65F0431B238EB9E40047CC90 /* tvos */,
 				65F04454238EB9E50047CC90 /* LICENSE.txt */,
@@ -562,85 +538,6 @@
 				65F042FB238EB9E40047CC90 /* Realm.framework */,
 			);
 			path = "swift-11.2";
-			sourceTree = "<group>";
-		};
-		65F042FD238EB9E40047CC90 /* plugin */ = {
-			isa = PBXGroup;
-			children = (
-				65F042FE238EB9E40047CC90 /* RealmPlugin.xcodeproj */,
-				65F04301238EB9E40047CC90 /* rlm_lldb.py */,
-				65F04302238EB9E40047CC90 /* RealmPlugin */,
-				65F0430B238EB9E40047CC90 /* README.md */,
-				65F0430C238EB9E40047CC90 /* Templates */,
-			);
-			path = plugin;
-			sourceTree = "<group>";
-		};
-		65F042FF238EB9E40047CC90 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				65F044DE238EB9E60047CC90 /* RealmPlugin.xcplugin */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		65F04302238EB9E40047CC90 /* RealmPlugin */ = {
-			isa = PBXGroup;
-			children = (
-				65F04303238EB9E40047CC90 /* RLMPSimulatorManager.m */,
-				65F04304238EB9E40047CC90 /* RealmPlugin-Prefix.pch */,
-				65F04305238EB9E40047CC90 /* InfoPlist.strings */,
-				65F04307238EB9E40047CC90 /* RLMPRealmPlugin.h */,
-				65F04308238EB9E40047CC90 /* RealmPlugin-Info.plist */,
-				65F04309238EB9E40047CC90 /* RLMPSimulatorManager.h */,
-				65F0430A238EB9E40047CC90 /* RLMPRealmPlugin.m */,
-			);
-			path = RealmPlugin;
-			sourceTree = "<group>";
-		};
-		65F0430C238EB9E40047CC90 /* Templates */ = {
-			isa = PBXGroup;
-			children = (
-				65F0430D238EB9E40047CC90 /* file_templates */,
-				65F04316238EB9E40047CC90 /* install_templates.sh */,
-			);
-			path = Templates;
-			sourceTree = "<group>";
-		};
-		65F0430D238EB9E40047CC90 /* file_templates */ = {
-			isa = PBXGroup;
-			children = (
-				65F0430E238EB9E40047CC90 /* Realm Model Object.xctemplate */,
-			);
-			path = file_templates;
-			sourceTree = "<group>";
-		};
-		65F0430E238EB9E40047CC90 /* Realm Model Object.xctemplate */ = {
-			isa = PBXGroup;
-			children = (
-				65F0430F238EB9E40047CC90 /* TemplateIcon.icns */,
-				65F04310238EB9E40047CC90 /* Swift */,
-				65F04312238EB9E40047CC90 /* TemplateInfo.plist */,
-				65F04313238EB9E40047CC90 /* Objective-C */,
-			);
-			path = "Realm Model Object.xctemplate";
-			sourceTree = "<group>";
-		};
-		65F04310238EB9E40047CC90 /* Swift */ = {
-			isa = PBXGroup;
-			children = (
-				65F04311238EB9E40047CC90 /* ___FILEBASENAME___.swift */,
-			);
-			path = Swift;
-			sourceTree = "<group>";
-		};
-		65F04313238EB9E40047CC90 /* Objective-C */ = {
-			isa = PBXGroup;
-			children = (
-				65F04314238EB9E40047CC90 /* ___FILEBASENAME___.h */,
-				65F04315238EB9E40047CC90 /* ___FILEBASENAME___.m */,
-			);
-			path = "Objective-C";
 			sourceTree = "<group>";
 		};
 		65F04317238EB9E40047CC90 /* ios */ = {
@@ -958,12 +855,6 @@
 			mainGroup = 65982AE420DBD5670018F790;
 			productRefGroup = 65982AEE20DBD5670018F790 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 65F042FF238EB9E40047CC90 /* Products */;
-					ProjectRef = 65F042FE238EB9E40047CC90 /* RealmPlugin.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				65982B0520DFF9C70018F790 /* iOS Example */,
@@ -979,16 +870,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		65F044DE238EB9E60047CC90 /* RealmPlugin.xcplugin */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RealmPlugin.xcplugin;
-			remoteRef = 65F044DD238EB9E60047CC90 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		65982B0420DFF9C70018F790 /* Resources */ = {
@@ -1233,14 +1114,6 @@
 				65982B5D20DFFD5B0018F790 /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		65F04305238EB9E40047CC90 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65F04306238EB9E40047CC90 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
