@@ -65,6 +65,7 @@ public extension Realm
          - configuration:   an instance of `Realm.Configuration` used to open a new `Realm` in the background.
                             Defaults to `Realm.Configuration.backgroundConfiguration`.
                             If no `backgroundConfiguration` is set, a `Realm.Configuration.defaultConfiguration` is used.
+         - operationQueue:   the `OperationQueue` in which to run the `closure`. Defaults to `.backgroundRealm`.
          - closure:         the closure to be executed inside the background `try realm.write {}` call.
                             It receives two arguments:
             - `Realm`:                  the background `Realm` instance if it was possible to open one.
@@ -75,9 +76,11 @@ public extension Realm
      - `OperationQueue.backgroundRealm`
      */
     static func writeInBackground(configuration: Realm.Configuration? = .backgroundConfiguration,
+                                  operationQueue queue: OperationQueue = .backgroundRealm,
                                   _ closure: @escaping BackgroundTransaction)
     {
         Realm.executeInBackground(configuration: configuration ?? .defaultConfiguration,
+                                  operationQueue: queue,
                                   closure)
     }
     
@@ -88,6 +91,7 @@ public extension Realm
         - fileURL:  the file URL used to open a new `Realm` in the background.
                     It defaults to using `Realm.Configuration.backgroundConfiguration` and setting its `fileURL` property.
                     If no `backgroundConfiguration` is set, `Realm.Configuration.defaultConfiguration` is used.
+        - operationQueue:   the `OperationQueue` in which to run the `closure`. Defaults to `.backgroundRealm`.
         - closure:  the closure to be executed inside the background `try realm.write {}` call.
                     It receives two arguments:
             - `Realm`:                  the background `Realm` instance if it was possible to open one.
@@ -97,12 +101,14 @@ public extension Realm
      - `Realm.writeInBackground(configuration:_:)`
      */
     static func writeInBackground(fileURL: URL,
+                                  operationQueue queue: OperationQueue = .backgroundRealm,
                                   _ closure: @escaping BackgroundTransaction)
     {
         var configuration = Realm.Configuration.backgroundConfiguration ?? Realm.Configuration.defaultConfiguration
         configuration.fileURL = fileURL
 
         Realm.executeInBackground(configuration: configuration,
+                                  operationQueue: queue,
                                   closure)
     }
     
@@ -113,6 +119,7 @@ public extension Realm
      If no `backgroundConfiguration` is set, `Realm.Configuration.defaultConfiguration` is used.
      
      - parameters:
+        - operationQueue:   the `OperationQueue` in which to run the `closure`. Defaults to `.backgroundRealm`.
         - closure:      the closure to be executed inside the background `try realm.write {}` call.
                         It receives two arguments:
             - `Realm`:                  the background `Realm` instance if it was possible to open one.
@@ -121,20 +128,23 @@ public extension Realm
      ## See Also:
      - `Realm.writeInBackground(configuration:_:)`
      */
-    func writeInBackground(_ closure: @escaping BackgroundTransaction)
+    func writeInBackground(operationQueue queue: OperationQueue = .backgroundRealm,
+                           closure: @escaping BackgroundTransaction)
     {
         let config = configuration
         Realm.executeInBackground(configuration: config,
+                                  operationQueue: queue,
                                   closure)
     }
 
     
     //MARK: Private
     private static func executeInBackground(configuration: Realm.Configuration,
+                                            operationQueue queue: OperationQueue = .backgroundRealm,
                                             _ closure: @escaping BackgroundTransaction)
     {
         //Adding an `Operation` to `OperationQueue.backgroundRealm`
-        OperationQueue.backgroundRealm.addOperation {
+        queue.addOperation {
             do {
                 //Creating an autorelease pool
                 try autoreleasepool {
@@ -202,6 +212,7 @@ public extension Realm
          - configuration:   an instance of `Realm.Configuration` used to open a new `Realm` in the background.
                             Defaults to `Realm.Configuration.backgroundConfiguration`.
                             If no `backgroundConfiguration` is set, a `Realm.Configuration.defaultConfiguration` is used.
+         - operationQueue:   the `OperationQueue` in which to run the `closure`. Defaults to `.backgroundRealm`.
          - closure:         the closure to be executed inside the background write transaction.
                             It receives two arguments:
             - `Realm`:                  the background `Realm` instance if it was possible to open one.
@@ -212,9 +223,11 @@ public extension Realm
      - `OperationQueue.backgroundRealm`
      */
     static func commitInBackground(configuration: Realm.Configuration? = .backgroundConfiguration,
+                                   operationQueue queue: OperationQueue = .backgroundRealm,
                                    _ closure: @escaping BackgroundTransaction)
     {
         Realm.executeInBackground(configuration: configuration ?? .defaultConfiguration,
+                                  operationQueue: queue,
                                   closure)
     }
 
@@ -225,6 +238,7 @@ public extension Realm
         - fileURL:  the file URL used to open a new `Realm` in the background.
                     It defaults to using `Realm.Configuration.backgroundConfiguration` and setting its `fileURL` property.
                     If no `backgroundConfiguration` is set, `Realm.Configuration.defaultConfiguration` is used.
+        - operationQueue:   the `OperationQueue` in which to run the `closure`. Defaults to `.backgroundRealm`.
         - closure:  the closure to be executed inside the background `try realm.write {}` call.
                     It receives two arguments:
             - `Realm`:                  the background `Realm` instance if it was possible to open one.
@@ -234,12 +248,14 @@ public extension Realm
      - `Realm.writeInBackground(configuration:_:)`
      */
     static func commitInBackground(fileURL: URL,
+                                   operationQueue queue: OperationQueue = .backgroundRealm,
                                    _ closure: @escaping BackgroundTransaction)
     {
         var configuration = Realm.Configuration.backgroundConfiguration ?? Realm.Configuration.defaultConfiguration
         configuration.fileURL = fileURL
 
         Realm.executeInBackground(configuration: configuration,
+                                  operationQueue: queue,
                                   closure)
     }
 
@@ -250,6 +266,7 @@ public extension Realm
      If no `backgroundConfiguration` is set, `Realm.Configuration.defaultConfiguration` is used.
 
      - parameters:
+        - operationQueue:   the `OperationQueue` in which to run the `closure`. Defaults to `.backgroundRealm`.
         - closure:      the closure to be executed inside the background `try realm.write {}` call.
                         It receives two arguments:
             - `Realm`:                  the background `Realm` instance if it was possible to open one.
@@ -258,20 +275,23 @@ public extension Realm
      ## See Also:
      - `Realm.writeInBackground(configuration:_:)`
      */
-    func commitInBackground( closure: @escaping BackgroundTransaction)
+    func commitInBackground(operationQueue queue: OperationQueue = .backgroundRealm,
+                            _ closure: @escaping BackgroundTransaction)
     {
         let config = configuration
         Realm.executeInBackground(configuration: config,
+                                  operationQueue: queue,
                                   closure)
     }
 
 
     //MARK: Private
     private static func executeInBackground(configuration: Realm.Configuration,
+                                            operationQueue queue: OperationQueue = .backgroundRealm,
                                             _ closure: @escaping CancellableBackgroundTransaction)
     {
         //Adding an `Operation` to `OperationQueue.backgroundRealm`
-        OperationQueue.backgroundRealm.addOperation {
+        queue.addOperation {
             do {
                 //Creating an autorelease pool
                 try autoreleasepool {

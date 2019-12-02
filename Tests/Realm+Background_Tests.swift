@@ -47,6 +47,8 @@ class Realm_Background_Write_Tests: XCTestCase
         Realm.writeInBackground(fileURL: url!) { (result) in
             defer { expectRealm.fulfill() }
 
+            XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
+
             switch result {
             case .success(let bgRealm):
                 XCTAssertNotNil(bgRealm.configuration.fileURL, "The background realm's configuration shouldn't be empty")
@@ -71,6 +73,8 @@ class Realm_Background_Write_Tests: XCTestCase
             let realm = try Realm(fileURL: url!)
             realm.writeInBackground { (result) in
                 defer { expectRealm.fulfill() }
+
+                XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
 
                 switch result {
                 case .success(let bgRealm):
@@ -100,6 +104,8 @@ class Realm_Background_Write_Tests: XCTestCase
         Realm.writeInBackground { (result) in
             defer { expectRealm.fulfill() }
 
+            XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
+
             switch result {
             case .success(let bgRealm):
                 XCTAssertNotNil(bgRealm.configuration.fileURL, "The background realm's configuration shouldn't be empty")
@@ -126,6 +132,8 @@ class Realm_Background_Write_Tests: XCTestCase
             let realm = try Realm(fileURL: url!)
             realm.writeInBackground { (result) in
                 defer { expectRealm.fulfill() }
+
+                XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
 
                 switch result {
                 case .success(let bgRealm):
@@ -185,6 +193,8 @@ class Realm_Background_Write_Tests: XCTestCase
         }
         
         Realm.writeInBackground { (result) in
+            XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
+
             switch result {
             case .success(let bgRealm):
                 let object = TestObject()
@@ -236,6 +246,8 @@ class Realm_Background_Write_Tests: XCTestCase
             })
             
             realm.writeInBackground { (result) in
+                XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
+
                 switch result {
                 case .success(let bgRealm):
                     let object = TestObject()
@@ -301,6 +313,8 @@ class Realm_Background_Commit_Tests: XCTestCase
         Realm.commitInBackground(fileURL: url!) { (result) in
             defer { expectRealm.fulfill() }
 
+            XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
+
             switch result {
             case .success(let bgRealm):
                 XCTAssertNotNil(bgRealm.configuration.fileURL, "The background realm's configuration shouldn't be empty")
@@ -325,6 +339,8 @@ class Realm_Background_Commit_Tests: XCTestCase
             let realm = try Realm(fileURL: url!)
             realm.commitInBackground { (result) in
                 defer { expectRealm.fulfill() }
+
+                XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
 
                 switch result {
                 case .success(let bgRealm):
@@ -354,6 +370,8 @@ class Realm_Background_Commit_Tests: XCTestCase
         Realm.commitInBackground { (result) in
             defer { expectRealm.fulfill() }
 
+            XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
+
             switch result {
             case .success(let bgRealm):
                 XCTAssertNotNil(bgRealm.configuration.fileURL, "The background realm's configuration shouldn't be empty")
@@ -380,6 +398,8 @@ class Realm_Background_Commit_Tests: XCTestCase
             let realm = try Realm(fileURL: url!)
             realm.commitInBackground { (result) in
                 defer { expectRealm.fulfill() }
+
+                XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
 
                 switch result {
                 case .success(let bgRealm):
@@ -439,6 +459,8 @@ class Realm_Background_Commit_Tests: XCTestCase
         }
 
         Realm.commitInBackground { (result) in
+            XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
+
             switch result {
             case .success(let bgRealm):
                 let object = TestObject()
@@ -490,6 +512,8 @@ class Realm_Background_Commit_Tests: XCTestCase
             })
 
             realm.commitInBackground { (result) in
+                XCTAssert(Thread.current != Thread.main, "This should be executed in a background thread")
+
                 switch result {
                 case .success(let bgRealm):
                     let object = TestObject()
