@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		209C07B124466174001D1C4C /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209C07B024466174001D1C4C /* RealmSwift.framework */; };
 		65040985228300B8009F0029 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6504096F22830077009F0029 /* RealmSwift.framework */; };
 		65040986228300B8009F0029 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6504096F22830077009F0029 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65040987228300B8009F0029 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6504097022830077009F0029 /* Realm.framework */; };
@@ -31,7 +32,6 @@
 		65982B5920DFFD5A0018F790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65982B5820DFFD5A0018F790 /* AppDelegate.swift */; };
 		65982B5B20DFFD5B0018F790 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65982B5A20DFFD5B0018F790 /* Assets.xcassets */; };
 		65982B5E20DFFD5B0018F790 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65982B5C20DFFD5B0018F790 /* MainMenu.xib */; };
-		65984C03235B281700E09FB0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65984C02235B281700E09FB0 /* RealmSwift.framework */; platformFilter = ios; };
 		65984C1D235B591800E09FB0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65984C19235B589400E09FB0 /* RealmSwift.framework */; };
 		65984C21235B592B00E09FB0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65984C20235B592B00E09FB0 /* RealmSwift.framework */; platformFilter = ios; };
 		65DB01F420E0018A00F514EC /* BackgroundRealm_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DB01F220E0018A00F514EC /* BackgroundRealm_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -165,6 +165,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		209C07B024466174001D1C4C /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/tvOS/RealmSwift.framework; sourceTree = "<group>"; };
 		6504093922830077009F0029 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		6504093A22830077009F0029 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		6504093C22830077009F0029 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -247,7 +248,6 @@
 		65982B5D20DFFD5B0018F790 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		65982B5F20DFFD5B0018F790 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65982B6020DFFD5B0018F790 /* macOS_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS_Example.entitlements; sourceTree = "<group>"; };
-		65984C02235B281700E09FB0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../../Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		65984C19235B589400E09FB0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/watchOS/RealmSwift.framework; sourceTree = "<group>"; };
 		65984C20235B592B00E09FB0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		65DB01B520DFFF4E00F514EC /* BackgroundRealm.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = BackgroundRealm.podspec; path = ../BackgroundRealm.podspec; sourceTree = "<group>"; };
@@ -334,7 +334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65984C21235B592B00E09FB0 /* RealmSwift.framework in Frameworks */,
-				65984C03235B281700E09FB0 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +341,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				209C07B124466174001D1C4C /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,9 +818,9 @@
 		65984C01235B281700E09FB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				209C07B024466174001D1C4C /* RealmSwift.framework */,
 				65984C20235B592B00E09FB0 /* RealmSwift.framework */,
 				65984C19235B589400E09FB0 /* RealmSwift.framework */,
-				65984C02235B281700E09FB0 /* RealmSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1490,7 +1490,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(REALM_PATH)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1511,7 +1510,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PLATFORM = "";
 				PRODUCT_NAME = BackgroundRealm;
-				REALM_PATH = "$(SRCROOT)/../Carthage/build/iOS";
 				REALM_VERSION = 3.15.0;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1561,7 +1559,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(REALM_PATH)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1575,7 +1572,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PLATFORM = "";
 				PRODUCT_NAME = BackgroundRealm;
-				REALM_PATH = "$(SRCROOT)/../Carthage/build/iOS";
 				REALM_VERSION = 3.15.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1872,6 +1868,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = BackgroundRealm_iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1901,6 +1898,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = BackgroundRealm_iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1930,6 +1928,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/tvOS";
 				INFOPLIST_FILE = BackgroundRealm_tvOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1960,6 +1959,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/tvOS";
 				INFOPLIST_FILE = BackgroundRealm_tvOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1991,6 +1991,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/macOS";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = BackgroundRealm_macOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2022,6 +2023,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/macOS";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = BackgroundRealm_macOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2053,6 +2055,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/watchOS";
 				INFOPLIST_FILE = BackgroundRealm_watchOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2084,6 +2087,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/watchOS";
 				INFOPLIST_FILE = BackgroundRealm_watchOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
