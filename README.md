@@ -1,7 +1,7 @@
-# Background Realm [![Version](https://img.shields.io/badge/Version-2.2.0-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
+# Background Realm [![Version](https://img.shields.io/badge/Version-2.2.1-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
 
 [![Platforms](https://img.shields.io/badge/Platforms-iOS|tvOS|macOS|watchOS-brightgreen.svg?style=flat)](#installation)
-[![Swift support](https://img.shields.io/badge/Swift-5.0%20%7C%205.2-red.svg?style=flat)](#swift-versions-support)
+[![Swift support](https://img.shields.io/badge/Swift-5.0%20%7C%205.3-red.svg?style=flat)](#swift-versions-support)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/BackgroundRealm.svg?style=flat&label=CocoaPods)](https://cocoapods.org/pods/BackgroundRealm)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-red.svg?style=flat)](https://github.com/apple/swift-package-manager)
@@ -149,7 +149,7 @@ Then `import BackgroundRealm` where needed.
 ### Swift Package Manager
 
 ```swift
-.package(url: "https://github.com/BellAppLab/BackgroundRealm.git", from: "2.2.0")
+.package(url: "https://github.com/BellAppLab/BackgroundRealm.git", from: "2.2.1")
 ```
 
 ### Git Submodules
