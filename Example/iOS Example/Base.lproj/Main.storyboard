@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,18 +12,41 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JK2-wK-Quz"/>
-                        <viewControllerLayoutGuide type="bottom" id="bLz-Zx-fgg"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check the console for more info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rT-nu-v9K">
+                                <rect key="frame" x="90.5" y="627" width="194" height="16"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqW-6b-YYQ">
+                                <rect key="frame" x="24" y="320.5" width="327" height="26.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7rT-nu-v9K" firstAttribute="centerX" secondItem="EPT-EE-gsq" secondAttribute="centerX" id="64i-f4-dbz"/>
+                            <constraint firstItem="aqW-6b-YYQ" firstAttribute="centerX" secondItem="EPT-EE-gsq" secondAttribute="centerX" id="8hg-2v-usV"/>
+                            <constraint firstItem="EPT-EE-gsq" firstAttribute="bottom" secondItem="7rT-nu-v9K" secondAttribute="bottom" constant="24" id="JLz-QW-Wj9"/>
+                            <constraint firstItem="EPT-EE-gsq" firstAttribute="trailing" secondItem="aqW-6b-YYQ" secondAttribute="trailing" constant="24" id="SbQ-mN-Ig7"/>
+                            <constraint firstItem="aqW-6b-YYQ" firstAttribute="centerY" secondItem="EPT-EE-gsq" secondAttribute="centerY" id="Sdw-RC-4rl"/>
+                            <constraint firstItem="aqW-6b-YYQ" firstAttribute="leading" secondItem="EPT-EE-gsq" secondAttribute="leading" constant="24" id="vJZ-Du-Azu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EPT-EE-gsq"/>
                     </view>
+                    <connections>
+                        <outlet property="mainLabel" destination="aqW-6b-YYQ" id="LjU-A9-mcv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-46" y="150"/>
         </scene>
     </scenes>
 </document>
