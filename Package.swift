@@ -1,14 +1,14 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.3
 
 import PackageDescription
 
 let package = Package(
     name: "BackgroundRealm",
     platforms: [
-        .iOS(.v9),
-        .macOS(.v10_11),
-        .tvOS(.v10),
-        .watchOS(.v3)
+        .iOS(.v12),
+        .macOS(.v10_13),
+        .tvOS(.v12),
+        .watchOS(.v4)
     ],
     products: [
         .library(
@@ -17,7 +17,7 @@ let package = Package(
             targets: ["BackgroundRealm"]),
     ],
     dependencies: [
-         .package(url: "https://github.com/realm/realm-cocoa", from: "4.0.0"),
+         .package(url: "https://github.com/realm/realm-cocoa.git", from: "10.0.0"),
     ],
     targets: [
         .target(

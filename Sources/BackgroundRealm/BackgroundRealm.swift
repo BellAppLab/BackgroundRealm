@@ -68,30 +68,19 @@ class BackgroundWorker: NSObject
                         object: nil)
         thread?.name = "\(threadName)-\(UUID().uuidString)"
         thread?.start()
-
-        #if swift(>=4.2)
-        let mode = RunLoop.Mode.default.rawValue
-        #else
-        let mode = RunLoopMode.defaultRunLoopMode.rawValue
-        #endif
         
         perform(#selector(runBlock),
                 on: thread!,
                 with: nil,
                 waitUntilDone: false,
-                modes: [mode])
+                modes: [RunLoop.Mode.default.rawValue])
     }
     
     @objc
     func runRunLoop() {
-        #if swift(>=4.2)
-        let mode = RunLoop.Mode.default
-        #else
-        let mode = RunLoopMode.defaultRunLoopMode
-        #endif
         while (self.isRunning) {
             RunLoop.current.run(
-                mode: mode,
+                mode: RunLoop.Mode.default,
                 before: Date.distantFuture)
         }
         Thread.exit()
@@ -150,6 +139,7 @@ public final class BackgroundRealm
     public var isEmpty: Bool { return underlyingRealm?.isEmpty ?? true }
     
     //MARK: - Initializers
+    public typealias SetupCallback = (Result<Realm, BackgroundRealm.Error>) -> Void
     /**
      Obtains a `BackgroundRealm` instance with the given configuration.
      
@@ -163,7 +153,7 @@ public final class BackgroundRealm
      */
     @nonobjc
     public init(configuration: Realm.Configuration? = Realm.Configuration.backgroundConfiguration,
-                _ completion: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
+                _ completion: @escaping SetupCallback)
     {
         self._configuration = configuration ?? Realm.Configuration.defaultConfiguration
         setup(completion)
@@ -186,15 +176,26 @@ public final class BackgroundRealm
      */
     @nonobjc
     public convenience init(fileURL: URL,
-                            _ completion: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
+                            _ completion: @escaping SetupCallback)
     {
         var configuration = Realm.Configuration.backgroundConfiguration ?? Realm.Configuration.defaultConfiguration
         configuration.fileURL = fileURL
         self.init(configuration: configuration, completion)
     }
+
+    /**
+     Unavailable. Please use the `Result<Realm, BackgroundRealm.Error>>` callback instead.
+     */
+    @available(*, unavailable)
+    @nonobjc
+    public convenience init(fileURL: URL,
+                            _ completion: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
+    {
+        fatalError()
+    }
     
     @nonobjc
-    private func setup(_ completion: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
+    private func setup(_ completion: @escaping SetupCallback)
     {
         let configuration = _configuration
         
@@ -203,21 +204,19 @@ public final class BackgroundRealm
         if configuration.syncConfiguration != nil, configuration.readOnly == true {
             Realm.asyncOpen(configuration: configuration,
                             callbackQueue: .backgroundRealm)
-            { (realm, error) in
-                completion(realm, .generic(underlyingError: error))
+            { (result) in
+                completion(result.mapError(BackgroundRealm.Error.generic))
             }
             return
         }
         
         backgroundWorker.start { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            do {
-                strongSelf.underlyingRealm = try Realm(configuration: configuration)
-                completion(strongSelf.underlyingRealm, nil)
-            } catch {
-                completion(nil, .generic(underlyingError: error))
-            }
+            completion(Result(catching: {
+                let realm = try Realm(configuration: configuration)
+                self?.underlyingRealm = realm
+                return realm
+            })
+            .mapError(BackgroundRealm.Error.generic))
         }
     }
 }
