@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,16 +29,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="EPT-EE-gsq"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7rT-nu-v9K" firstAttribute="centerX" secondItem="EPT-EE-gsq" secondAttribute="centerX" id="64i-f4-dbz"/>
-                            <constraint firstItem="aqW-6b-YYQ" firstAttribute="centerX" secondItem="EPT-EE-gsq" secondAttribute="centerX" id="8hg-2v-usV"/>
                             <constraint firstItem="EPT-EE-gsq" firstAttribute="bottom" secondItem="7rT-nu-v9K" secondAttribute="bottom" constant="24" id="JLz-QW-Wj9"/>
                             <constraint firstItem="EPT-EE-gsq" firstAttribute="trailing" secondItem="aqW-6b-YYQ" secondAttribute="trailing" constant="24" id="SbQ-mN-Ig7"/>
                             <constraint firstItem="aqW-6b-YYQ" firstAttribute="centerY" secondItem="EPT-EE-gsq" secondAttribute="centerY" id="Sdw-RC-4rl"/>
                             <constraint firstItem="aqW-6b-YYQ" firstAttribute="leading" secondItem="EPT-EE-gsq" secondAttribute="leading" constant="24" id="vJZ-Du-Azu"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="EPT-EE-gsq"/>
                     </view>
                     <connections>
                         <outlet property="mainLabel" destination="aqW-6b-YYQ" id="LjU-A9-mcv"/>
