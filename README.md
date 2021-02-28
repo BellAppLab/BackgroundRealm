@@ -1,4 +1,4 @@
-# Background Realm [![Version](https://img.shields.io/badge/Version-2.2.1-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
+# Background Realm [![Version](https://img.shields.io/badge/Version-3.0.0-black.svg?style=flat)](#installation) [![License](https://img.shields.io/cocoapods/l/BackgroundRealm.svg?style=flat)](#license)
 
 [![Platforms](https://img.shields.io/badge/Platforms-iOS|tvOS|macOS|watchOS-brightgreen.svg?style=flat)](#installation)
 [![Swift support](https://img.shields.io/badge/Swift-5.0%20%7C%205.3-red.svg?style=flat)](#swift-versions-support)
@@ -17,11 +17,11 @@ It's main focus is to enhance existing `Realm`s and Realm-based code bases with 
 
 ## Specs
 
-* RealmSwift 4.0.0+
-* iOS 9+
-* tvOS 10+
-* watchOS 3+
-* macOS 10.11+
+* RealmSwift 10.0.0+
+* iOS 12+
+* tvOS 12+
+* watchOS 4+
+* macOS 10.12+
 * Swift 5.0+
 
 ### Objective-C
@@ -133,7 +133,7 @@ If you'd like to use your own queues, just set those as early as possible in you
 ### Cocoapods
 
 ```ruby
-pod 'BackgroundRealm', '~> 2.0'
+pod 'BackgroundRealm', '~> 3.0'
 ```
 
 Then `import BackgroundRealm` where needed.
@@ -141,7 +141,7 @@ Then `import BackgroundRealm` where needed.
 ### Carthage
 
 ```swift
-github "BellAppLab/BackgroundRealm" ~> 2.0
+github "BellAppLab/BackgroundRealm" ~> 3.0
 ```
 
 Then `import BackgroundRealm` where needed.
@@ -149,7 +149,7 @@ Then `import BackgroundRealm` where needed.
 ### Swift Package Manager
 
 ```swift
-.package(url: "https://github.com/BellAppLab/BackgroundRealm.git", from: "2.2.1")
+.package(url: "https://github.com/BellAppLab/BackgroundRealm.git", from: "3.0.0")
 ```
 
 ### Git Submodules
