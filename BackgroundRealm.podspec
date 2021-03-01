@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.name                = "BackgroundRealm"
   s.version             = "3.0.0"
   s.summary             = "A collection of handy classes and extensions that make it easier to work with `RealmSwift` in the background."
-  s.screenshot          = "https://github.com/BellAppLab/BackgroundRealm/raw/master/Images/background_realm.png"
+  s.screenshot          = "https://github.com/BellAppLab/BackgroundRealm/raw/main/Images/background_realm.png"
 
   s.description         = <<-DESC
 Background Realm is a collection of handy classes and extensions that make it easier to work with `RealmSwift` in the background.
