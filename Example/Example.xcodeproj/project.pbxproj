@@ -43,10 +43,6 @@
 		65AFFC3D2418F4E70056730E /* BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AFFC332418F4D90056730E /* BackgroundRealm.swift */; };
 		65AFFC3E2418F4E70056730E /* BackgroundRealm+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AFFC322418F4D90056730E /* BackgroundRealm+Errors.swift */; };
 		65AFFC3F2418F4E70056730E /* Realm+BackgroundRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AFFC312418F4D90056730E /* Realm+BackgroundRealm.swift */; };
-		65B44F692993D184003601F5 /* Realm.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B44F672993D184003601F5 /* Realm.xcframework */; };
-		65B44F6B2993D184003601F5 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B44F682993D184003601F5 /* RealmSwift.xcframework */; };
-		65B44F802993D20C003601F5 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B44F782993D1DD003601F5 /* Realm.framework */; };
-		65B44F822993D20C003601F5 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B44F792993D1DD003601F5 /* RealmSwift.framework */; };
 		65B44F852993D233003601F5 /* Realm.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B44F672993D184003601F5 /* Realm.xcframework */; };
 		65B44F862993D233003601F5 /* Realm.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65B44F672993D184003601F5 /* Realm.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65B44F872993D233003601F5 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B44F682993D184003601F5 /* RealmSwift.xcframework */; };
@@ -61,6 +57,22 @@
 		65DB022D20E0021700F514EC /* BackgroundRealm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB022620E0021700F514EC /* BackgroundRealm.framework */; };
 		65DB022E20E0021700F514EC /* BackgroundRealm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65DB022620E0021700F514EC /* BackgroundRealm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65DB026B20E0462B00F514EC /* BackgroundRealm_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DB026920E0462B00F514EC /* BackgroundRealm_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65F2C6BB2993E53E005E1CC1 /* Realm.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B44F672993D184003601F5 /* Realm.xcframework */; };
+		65F2C6BD2993E53E005E1CC1 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B44F682993D184003601F5 /* RealmSwift.xcframework */; };
+		65F2C6CC2993E583005E1CC1 /* Realm.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6CA2993E583005E1CC1 /* Realm.xcframework */; };
+		65F2C6CE2993E583005E1CC1 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6CB2993E583005E1CC1 /* RealmSwift.xcframework */; };
+		65F2C6D32993E59F005E1CC1 /* Realm.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6D12993E59F005E1CC1 /* Realm.xcframework */; };
+		65F2C6D52993E59F005E1CC1 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6D22993E59F005E1CC1 /* RealmSwift.xcframework */; };
+		65F2C6D82993E5C6005E1CC1 /* Realm.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6CA2993E583005E1CC1 /* Realm.xcframework */; };
+		65F2C6D92993E5C6005E1CC1 /* Realm.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6CA2993E583005E1CC1 /* Realm.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65F2C6DA2993E5C6005E1CC1 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6CB2993E583005E1CC1 /* RealmSwift.xcframework */; };
+		65F2C6DB2993E5C6005E1CC1 /* RealmSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6CB2993E583005E1CC1 /* RealmSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65F2C6E72993E6CD005E1CC1 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6E52993E6CD005E1CC1 /* Realm.framework */; };
+		65F2C6E92993E6CD005E1CC1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6E62993E6CD005E1CC1 /* RealmSwift.framework */; };
+		65F2C6EC2993E6D6005E1CC1 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6E52993E6CD005E1CC1 /* Realm.framework */; };
+		65F2C6ED2993E6D6005E1CC1 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6E52993E6CD005E1CC1 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65F2C6EE2993E6D6005E1CC1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6E62993E6CD005E1CC1 /* RealmSwift.framework */; };
+		65F2C6EF2993E6D6005E1CC1 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65F2C6E62993E6CD005E1CC1 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +151,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				65DB021C20E001F000F514EC /* BackgroundRealm.framework in Embed Frameworks */,
+				65F2C6DB2993E5C6005E1CC1 /* RealmSwift.xcframework in Embed Frameworks */,
+				65F2C6D92993E5C6005E1CC1 /* Realm.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,7 +163,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				65F2C6ED2993E6D6005E1CC1 /* Realm.framework in Embed Frameworks */,
 				65DB022E20E0021700F514EC /* BackgroundRealm.framework in Embed Frameworks */,
+				65F2C6EF2993E6D6005E1CC1 /* RealmSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +229,12 @@
 		65DB026720E0462B00F514EC /* BackgroundRealm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BackgroundRealm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DB026920E0462B00F514EC /* BackgroundRealm_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundRealm_watchOS.h; sourceTree = "<group>"; };
 		65DB026A20E0462B00F514EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65F2C6CA2993E583005E1CC1 /* Realm.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Realm.xcframework; path = "../../realm-cocoa/build/tvos/swift-14.2/Realm.xcframework"; sourceTree = "<group>"; };
+		65F2C6CB2993E583005E1CC1 /* RealmSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RealmSwift.xcframework; path = "../../realm-cocoa/build/tvos/swift-14.2/RealmSwift.xcframework"; sourceTree = "<group>"; };
+		65F2C6D12993E59F005E1CC1 /* Realm.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Realm.xcframework; path = "../../realm-cocoa/build/watchos/swift-14.2/Realm.xcframework"; sourceTree = "<group>"; };
+		65F2C6D22993E59F005E1CC1 /* RealmSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RealmSwift.xcframework; path = "../../realm-cocoa/build/watchos/swift-14.2/RealmSwift.xcframework"; sourceTree = "<group>"; };
+		65F2C6E52993E6CD005E1CC1 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../realm-cocoa/build/catalyst/swift-14.2/Realm.framework"; sourceTree = "<group>"; };
+		65F2C6E62993E6CD005E1CC1 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../realm-cocoa/build/catalyst/swift-14.2/RealmSwift.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DB021B20E001F000F514EC /* BackgroundRealm.framework in Frameworks */,
+				65F2C6DA2993E5C6005E1CC1 /* RealmSwift.xcframework in Frameworks */,
+				65F2C6D82993E5C6005E1CC1 /* Realm.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +262,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F2C6EC2993E6D6005E1CC1 /* Realm.framework in Frameworks */,
 				65DB022D20E0021700F514EC /* BackgroundRealm.framework in Frameworks */,
+				65F2C6EE2993E6D6005E1CC1 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,8 +293,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65B44F692993D184003601F5 /* Realm.xcframework in Frameworks */,
-				65B44F6B2993D184003601F5 /* RealmSwift.xcframework in Frameworks */,
+				65F2C6BB2993E53E005E1CC1 /* Realm.xcframework in Frameworks */,
+				65F2C6BD2993E53E005E1CC1 /* RealmSwift.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +302,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F2C6CC2993E583005E1CC1 /* Realm.xcframework in Frameworks */,
+				65F2C6CE2993E583005E1CC1 /* RealmSwift.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,8 +311,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65B44F822993D20C003601F5 /* RealmSwift.framework in Frameworks */,
-				65B44F802993D20C003601F5 /* Realm.framework in Frameworks */,
+				65F2C6E92993E6CD005E1CC1 /* RealmSwift.framework in Frameworks */,
+				65F2C6E72993E6CD005E1CC1 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +320,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F2C6D32993E59F005E1CC1 /* Realm.xcframework in Frameworks */,
+				65F2C6D52993E59F005E1CC1 /* RealmSwift.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +339,12 @@
 		6557FFDE25EB960400E9E5F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65F2C6E52993E6CD005E1CC1 /* Realm.framework */,
+				65F2C6E62993E6CD005E1CC1 /* RealmSwift.framework */,
+				65F2C6D12993E59F005E1CC1 /* Realm.xcframework */,
+				65F2C6D22993E59F005E1CC1 /* RealmSwift.xcframework */,
+				65F2C6CA2993E583005E1CC1 /* Realm.xcframework */,
+				65F2C6CB2993E583005E1CC1 /* RealmSwift.xcframework */,
 				65B44F7F2993D207003601F5 /* swift-14.2 */,
 				65B44F782993D1DD003601F5 /* Realm.framework */,
 				65B44F792993D1DD003601F5 /* RealmSwift.framework */,
@@ -1301,7 +1337,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM = osx;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bellapplab.macOS-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1326,7 +1361,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM = osx;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bellapplab.macOS-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1442,7 +1476,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM = osx;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bellapplab.macOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1467,7 +1500,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM = osx;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bellapplab.macOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1613,7 +1645,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM = osx;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bellapplab.BackgroundRealm-macOS";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1644,7 +1675,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM = osx;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bellapplab.BackgroundRealm-macOS";
 				PROVISIONING_PROFILE_SPECIFIER = "";

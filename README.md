@@ -21,7 +21,7 @@ It's main focus is to enhance existing `Realm`s and Realm-based code bases with 
 * iOS 12+
 * tvOS 12+
 * watchOS 4+
-* macOS 10.12+
+* macOS 10.13+
 * Swift 5.0+
 
 ### Objective-C
