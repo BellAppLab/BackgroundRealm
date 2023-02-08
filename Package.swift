@@ -22,7 +22,7 @@ let package = Package(
     targets: [
         .target(
             name: "BackgroundRealm",
-            dependencies: ["realm-swift"]),
+            dependencies: ["realm-cocoa"]),
         .testTarget(
             name: "Tests",
             dependencies: ["BackgroundRealm"]),
