@@ -42,13 +42,13 @@ public extension Realm.Configuration
 
 //MARK: - WRITE TRANSACTIONS
 /**
- A BackgroundTransaction is a closure that is executed in the background with a newly instantiated `Realm`.
+ A BackgroundRealmTransaction is a closure that is executed in the background with a newly instantiated `Realm`.
 
  - parameters:
      - `Realm`:                 the background `Realm` instance if it was possible to open one.
      - `BackgroundRealm.Error`: a `BackgroundRealm.Error` describing what went wrong.
  */
-public typealias BackgroundTransaction = (Result<Realm, BackgroundRealm.Error>) -> Void
+public typealias BackgroundRealmTransaction = (Result<Realm, BackgroundRealm.Error>) -> Void
 
 
 public extension Realm
@@ -77,7 +77,7 @@ public extension Realm
      */
     static func writeInBackground(configuration: Realm.Configuration? = .backgroundConfiguration,
                                   operationQueue queue: OperationQueue = .backgroundRealm,
-                                  _ closure: @escaping BackgroundTransaction)
+                                  _ closure: @escaping BackgroundRealmTransaction)
     {
         Realm.executeInBackground(configuration: configuration ?? .defaultConfiguration,
                                   operationQueue: queue,
@@ -102,7 +102,7 @@ public extension Realm
      */
     static func writeInBackground(fileURL: URL,
                                   operationQueue queue: OperationQueue = .backgroundRealm,
-                                  _ closure: @escaping BackgroundTransaction)
+                                  _ closure: @escaping BackgroundRealmTransaction)
     {
         var configuration = Realm.Configuration.backgroundConfiguration ?? Realm.Configuration.defaultConfiguration
         configuration.fileURL = fileURL
@@ -129,7 +129,7 @@ public extension Realm
      - `Realm.writeInBackground(configuration:_:)`
      */
     func writeInBackground(operationQueue queue: OperationQueue = .backgroundRealm,
-                           closure: @escaping BackgroundTransaction)
+                           closure: @escaping BackgroundRealmTransaction)
     {
         let config = configuration
         Realm.executeInBackground(configuration: config,
@@ -141,7 +141,7 @@ public extension Realm
     //MARK: Private
     private static func executeInBackground(configuration: Realm.Configuration,
                                             operationQueue queue: OperationQueue = .backgroundRealm,
-                                            _ closure: @escaping BackgroundTransaction)
+                                            _ closure: @escaping BackgroundRealmTransaction)
     {
         //Adding an `Operation` to `OperationQueue.backgroundRealm`
         queue.addOperation {
@@ -224,7 +224,7 @@ public extension Realm
      */
     static func commitInBackground(configuration: Realm.Configuration? = .backgroundConfiguration,
                                    operationQueue queue: OperationQueue = .backgroundRealm,
-                                   _ closure: @escaping BackgroundTransaction)
+                                   _ closure: @escaping BackgroundRealmTransaction)
     {
         Realm.executeInBackground(configuration: configuration ?? .defaultConfiguration,
                                   operationQueue: queue,
@@ -249,7 +249,7 @@ public extension Realm
      */
     static func commitInBackground(fileURL: URL,
                                    operationQueue queue: OperationQueue = .backgroundRealm,
-                                   _ closure: @escaping BackgroundTransaction)
+                                   _ closure: @escaping BackgroundRealmTransaction)
     {
         var configuration = Realm.Configuration.backgroundConfiguration ?? Realm.Configuration.defaultConfiguration
         configuration.fileURL = fileURL
@@ -276,7 +276,7 @@ public extension Realm
      - `Realm.writeInBackground(configuration:_:)`
      */
     func commitInBackground(operationQueue queue: OperationQueue = .backgroundRealm,
-                            _ closure: @escaping BackgroundTransaction)
+                            _ closure: @escaping BackgroundRealmTransaction)
     {
         let config = configuration
         Realm.executeInBackground(configuration: config,

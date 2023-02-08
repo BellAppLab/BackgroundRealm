@@ -32,7 +32,7 @@ import RealmSwift
  - [Source](https://academy.realm.io/posts/realm-notifications-on-background-threads-with-swift/)
  */
 @objc
-class BackgroundWorker: NSObject
+final class BackgroundWorker: NSObject
 {
     deinit {
         stop()
@@ -182,17 +182,6 @@ public final class BackgroundRealm
         configuration.fileURL = fileURL
         self.init(configuration: configuration, completion)
     }
-
-    /**
-     Unavailable. Please use the `Result<Realm, BackgroundRealm.Error>>` callback instead.
-     */
-    @available(*, unavailable)
-    @nonobjc
-    public convenience init(fileURL: URL,
-                            _ completion: @escaping ((Realm?, BackgroundRealm.Error?) -> Void))
-    {
-        fatalError()
-    }
     
     @nonobjc
     private func setup(_ completion: @escaping SetupCallback)
@@ -218,6 +207,15 @@ public final class BackgroundRealm
             })
             .mapError(BackgroundRealm.Error.generic))
         }
+    }
+}
+
+
+//MARK: Writing
+@nonobjc
+public extension BackgroundRealm {
+    func write(_ transaction: @escaping BackgroundRealmTransaction) {
+        Realm.writeInBackground(configuration: configuration, transaction)
     }
 }
 
