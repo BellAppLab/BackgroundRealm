@@ -17,14 +17,12 @@ let package = Package(
             targets: ["BackgroundRealm"]),
     ],
     dependencies: [
-        .package(name: "RealmSwift", url: "https://github.com/realm/realm-cocoa.git", from: "10.0.0"),
+        .package(name: "RealmSwift", url: "https://github.com/realm/realm-swift.git", from: "10.0.0"),
     ],
     targets: [
         .target(
             name: "BackgroundRealm",
-            dependencies: [
-                .product(package: "realm-swift")
-            ]),
+            dependencies: ["RealmSwift"]),
         .testTarget(
             name: "Tests",
             dependencies: ["BackgroundRealm"]),
